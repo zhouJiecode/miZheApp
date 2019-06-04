@@ -3,9 +3,9 @@ import { Provider } from '@tarojs/mobx'
 import '@tarojs/async-await'
 import Index from './pages/index'
 
-import counterStore from './store/counter'
 import home from './store/home'
 import cart from './store/cart'
+import user from './store/user'
 
 import './app.scss'
 
@@ -16,16 +16,21 @@ import './app.scss'
 // }
 
 const store = {
-  counterStore,
   home,
-  cart
+  cart,
+  user
 }
 
 class App extends Component {
 
   config = {
     pages: [
-      'pages/index/index'
+      'pages/home/home',
+      'pages/user/user',
+      'pages/cart/cart',
+      'pages/user-login/user-login',
+      'pages/user-login-email/user-login-email',
+      'pages/webview/webview'
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -39,22 +44,17 @@ class App extends Component {
       backgroundColor: "#fafafa",
       borderStyle: 'black',
       list: [{
-        pagePath: "pages/index/index",
+        pagePath: "pages/home/home",
         iconPath: "./assets/tab-bar/home.png",
         selectedIconPath: "./assets/tab-bar/home-active.png",
         text: "首页"
       }, {
-        pagePath: "pages/index/index", // "pages/cate/cate",
-        iconPath: "./assets/tab-bar/cate.png",
-        selectedIconPath: "./assets/tab-bar/cate-active.png",
-        text: "分类"
-      }, {
-        pagePath: "pages/index/index", // "pages/cart/cart",
+        pagePath: 'pages/cart/cart',
         iconPath: "./assets/tab-bar/cart.png",
         selectedIconPath: "./assets/tab-bar/cart-active.png",
         text: "购物车"
       }, {
-        pagePath: "pages/index/index", // "pages/user/user",
+        pagePath: 'pages/user/user',
         iconPath: "./assets/tab-bar/user.png",
         selectedIconPath: "./assets/tab-bar/user-active.png",
         text: "个人"
