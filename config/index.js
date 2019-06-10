@@ -39,9 +39,14 @@ const config = {
   },
   copy: {
     patterns: [
+    {
+        from: 'src/components/vant-app/',
+        to: 'dist/weapp/components/vant-app/'
+        // ,
+        // ignore: '*.js'
+    } // 指定需要 copy 的目录
     ],
-    options: {
-    }
+    options: {}
   },
   weapp: {
     module: {

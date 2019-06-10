@@ -311,10 +311,10 @@
   dependencies:
     "@tarojs/mobx-common" "1.3.0-beta.3"
 
-"@tarojs/plugin-babel@1.3.0-beta.3":
-  version "1.3.0-beta.3"
-  resolved "https://registry.npm.taobao.org/@tarojs/plugin-babel/download/@tarojs/plugin-babel-1.3.0-beta.3.tgz#759d3c2bcb25bdbe0c0c43350fe3d70696825cbe"
-  integrity sha1-dZ08K8slvb4MDEM1D+PXBpaCXL4=
+"@tarojs/plugin-babel@^1.3.0-beta.8":
+  version "1.3.0-beta.8"
+  resolved "https://registry.npm.taobao.org/@tarojs/plugin-babel/download/@tarojs/plugin-babel-1.3.0-beta.8.tgz#fd58824b3ad5a03669905df3693913796c31ca82"
+  integrity sha1-/ViCSzrVoDZpkF3zaTkTeWwxyoI=
   dependencies:
     babel-core "^6.26.0"
 

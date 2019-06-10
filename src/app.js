@@ -2,10 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { Provider } from '@tarojs/mobx'
 import '@tarojs/async-await'
 import Index from './pages/index'
-
-import home from './store/home'
-import cart from './store/cart'
-import user from './store/user'
+import store from './store'
 
 import './app.scss'
 
@@ -14,12 +11,6 @@ import './app.scss'
 // if (process.env.NODE_ENV !== 'production' && process.env.TARO_ENV === 'h5')  {
 //   require('nerv-devtools')
 // }
-
-const store = {
-  home,
-  cart,
-  user
-}
 
 class App extends Component {
 
@@ -30,7 +21,8 @@ class App extends Component {
       'pages/cart/cart',
       'pages/user-login/user-login',
       'pages/user-login-email/user-login-email',
-      'pages/webview/webview'
+      'pages/webview/webview',
+      'pages/item/item'
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -59,6 +51,9 @@ class App extends Component {
         selectedIconPath: "./assets/tab-bar/user-active.png",
         text: "个人"
       }]
+    },
+    usingComponents: {
+      'van-button' : './components/vant-app/button/index'
     }
   }
 

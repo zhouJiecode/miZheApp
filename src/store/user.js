@@ -52,7 +52,6 @@ const homeStore = observable({
   async dispatchLogin(payload) {
     const res = await fetch({ url: API_USER_LOGIN, payload, method: undefined })
     console.log(res)
-    // this.searchCount = res.count || 0
   },
   dispatchLogout: () => ({ type: USER_LOGOUT })
 })
