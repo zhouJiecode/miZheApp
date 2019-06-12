@@ -25,18 +25,22 @@ class Index extends Component {
     login: false
   }
 
+  componentWillMount () {
+    Taro.hideTabBar()
+  }
+
   componentDidShow() {
     const { home, cart } = this.props
-    fetch({ url: API_CHECK_LOGIN, showToast: false, autoLogin: false }).then((res) => {
-      if (res) {
+    // fetch({ url: API_CHECK_LOGIN, showToast: false, autoLogin: false }).then((res) => {
+    //   if (res) {
         this.setState({ loaded: true, login: true })
         cart.dispatchCart()
         cart.dispatchCartNum()
         home.dispatchRecommend()
-      } else {
-        this.setState({ loaded: true, login: false })
-      }
-    })
+      // } else {
+      //   this.setState({ loaded: true, login: false })
+      // }
+    // })
   }
 
   toLogin = () => {
@@ -46,10 +50,20 @@ class Index extends Component {
   }
 
   render () {
-    const { cart: { cartInfo, recommend } } = this.props
+    const { cart: { cartInfo } } = this.props
     const { cartGroupList = [] } = cartInfo
-    const cartList = cartGroupList.filter(i => !i.promType)
-    const extList = recommend.extList || []
+    const cartList = [{
+      cartItemList: [{
+        pic: 'https://ai-call-platform.oss-cn-hangzhou.aliyuncs.com/CompanyWebsite/OfficialWebsite/NewsPicture/news2@2x_1548753493146.jpg',
+        prefix: '呵呵',
+        itemName: 'xx沐浴露',
+        actualPrice: '15',
+        cnt: 1,
+        specList: [],
+        checked: true
+      }]
+    }]// cartGroupList.filter(i => !i.promType)
+    // const extList = recommend.extList || []
     const isEmpty = !cartList.length
     const isShowFooter = !isEmpty
 
@@ -83,10 +97,10 @@ class Index extends Component {
           className='cart__wrap'
           style={{ height: getWindowHeight() }}
         >
-          <Tip list={cartInfo.policyDescList} />
+          {/* <Tip list={cartInfo.policyDescList} /> */}
           {isEmpty && <Empty />}
 
-          {!isEmpty && <Gift data={cartGroupList[0]} />}
+          {/* {!isEmpty && <Gift data={cartGroupList[0]} />} */}
 
           {!isEmpty && cartList.map((group, index) => (
             <List
@@ -100,21 +114,21 @@ class Index extends Component {
           ))}
 
           {/* 相关推荐 */}
-          {extList.map((ext, index) => (
+          {/* {extList.map((ext, index) => (
             <ItemList key={index} list={ext.itemList}>
               <View className='cart__ext'>
                 {!!ext.picUrl && <Image className='cart__ext-img' src={ext.picUrl} />}
                 <Text className='cart__ext-txt'>{ext.desc}</Text>
               </View>
             </ItemList>
-          ))}
+          ))} */}
 
           {/* 猜你喜欢 */}
-          <ItemList list={recommend.itemList}>
+          {/* <ItemList list={recommend.itemList}>
             <View className='cart__recommend'>
               <Text className='cart__recommend-txt'>{recommend.desc}</Text>
             </View>
-          </ItemList>
+          </ItemList> */}
 
           {isShowFooter &&
             <View className='cart__footer--placeholder' />

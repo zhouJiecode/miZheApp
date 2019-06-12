@@ -23,6 +23,7 @@ $avatarSize: 140px;
   flex-direction: row;
   align-items: center;
   height: 100%;
+  background: #101010;
 }
 
 .user-profile__avatar {
@@ -45,7 +46,7 @@ $avatarSize: 140px;
   margin-left: 30px;
 
   &-name {
-    color: #444;
+    color: rgb(250, 250, 250);
     font-size: 36px;
     line-height: 36px;
   }
@@ -71,27 +72,30 @@ $avatarSize: 140px;
 
   &-tip {
     margin-top: 28px;
-    color: rgba(0, 0, 0, 0.3);
+    color: $yellow;
     font-size: 28px;
     line-height: 28px;
   }
 }
 
 .user-profile__extra {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   align-self: flex-start;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  margin-top: -60px;
   margin-left: 18px;
-  width: 220px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .4);
 
-  &-qr {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    padding-top: 24px;
-    padding-right: 30px;
-
-    &-img {
-      width: 44px;
-      height: 44px;
-    }
+  &-img {
+    width: 44px;
+    height: 44px;
   }
 }

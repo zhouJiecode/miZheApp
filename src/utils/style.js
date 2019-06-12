@@ -26,7 +26,7 @@ export function getWindowHeight(showTabBar = true) {
     return `${windowHeight - statusBarHeight - titleBarHeight + (showTabBar ? 0 : TAB_BAR_HEIGHT)}px`
   }
 
-  return `${windowHeight}px`
+  return `${windowHeight - tabBarHeight}px`
 }
 
 /**

@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add @/styles/theme.scss --silent --no-progress
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add @/components/tapBar --silent --no-progress
 
 PATH: 
   C:\Program Files\nodejs\node_modules\npm\node_modules\npm-lifecycle\node-gyp-bin;D:\test\mizhe2\node_modules\.bin;C:\Program Files\nodejs\node_modules\npm\node_modules\npm-lifecycle\node-gyp-bin;D:\test\mizhe2\node_modules\.bin;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64\compiler;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files (x86)\Yarn\bin\;C:\Users\user\AppData\Local\Microsoft\WindowsApps;D:\Microsoft VS Code\bin;C:\Users\user\AppData\Roaming\npm;C:\Users\user\AppData\Local\Yarn\bin;C:\Program Files\nodejs\;
@@ -14,7 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.npm.taobao.org/@%2fstyles/theme.scss: Not found
+  Error: https://registry.npm.taobao.org/@%2fcomponents/tapBar: Not found
       at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:60182:18)
       at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:120166:22)
       at emitTwo (events.js:126:13)
@@ -55,6 +55,7 @@ npm manifest:
       "@tarojs/mobx": "1.3.0-beta.3",
       "@tarojs/mobx-h5": "1.3.0-beta.3",
       "@tarojs/mobx-rn": "1.3.0-beta.3",
+      "@tarojs/redux": "^1.3.0-beta.6",
       "@tarojs/rn-runner": "1.3.0-beta.3",
       "@tarojs/router": "1.3.0-beta.3",
       "@tarojs/taro": "1.3.0-beta.3",
@@ -63,12 +64,13 @@ npm manifest:
       "@tarojs/taro-swan": "1.3.0-beta.3",
       "@tarojs/taro-tt": "1.3.0-beta.3",
       "@tarojs/taro-weapp": "1.3.0-beta.3",
+      "blueimp-md5": "^2.10.0",
       "mobx": "4.8.0",
       "nerv-devtools": "^1.4.0-beta.3",
       "nervjs": "^1.4.0-beta.3"
     },
     "devDependencies": {
-      "@tarojs/plugin-babel": "1.3.0-beta.3",
+      "@tarojs/plugin-babel": "^1.3.0-beta.8",
       "@tarojs/plugin-csso": "1.3.0-beta.3",
       "@tarojs/plugin-sass": "1.3.0-beta.3",
       "@tarojs/plugin-uglifyjs": "1.3.0-beta.3",
@@ -409,10 +411,10 @@ Lockfile:
     dependencies:
       "@tarojs/mobx-common" "1.3.0-beta.3"
   
-  "@tarojs/plugin-babel@1.3.0-beta.3":
-    version "1.3.0-beta.3"
-    resolved "https://registry.npm.taobao.org/@tarojs/plugin-babel/download/@tarojs/plugin-babel-1.3.0-beta.3.tgz#759d3c2bcb25bdbe0c0c43350fe3d70696825cbe"
-    integrity sha1-dZ08K8slvb4MDEM1D+PXBpaCXL4=
+  "@tarojs/plugin-babel@^1.3.0-beta.8":
+    version "1.3.0-beta.8"
+    resolved "https://registry.npm.taobao.org/@tarojs/plugin-babel/download/@tarojs/plugin-babel-1.3.0-beta.8.tgz#fd58824b3ad5a03669905df3693913796c31ca82"
+    integrity sha1-/ViCSzrVoDZpkF3zaTkTeWwxyoI=
     dependencies:
       babel-core "^6.26.0"
   
@@ -437,6 +439,13 @@ Lockfile:
     integrity sha1-NvkbcmjkEc51IS6p2Iu+IhmN2jU=
     dependencies:
       uglify-js "^3.3.24"
+  
+  "@tarojs/redux@^1.3.0-beta.6":
+    version "1.3.0-beta.6"
+    resolved "https://registry.npm.taobao.org/@tarojs/redux/download/@tarojs/redux-1.3.0-beta.6.tgz#72165231ff53689a92080ee995d352810f7fe5b7"
+    integrity sha1-chZSMf9TaJqSCA7pldNSgQ9/5bc=
+    dependencies:
+      "@tarojs/utils" "1.3.0-beta.6"
   
   "@tarojs/rn-runner@1.3.0-beta.3":
     version "1.3.0-beta.3"
@@ -548,6 +557,11 @@ Lockfile:
     version "1.3.0-beta.3"
     resolved "https://registry.npm.taobao.org/@tarojs/utils/download/@tarojs/utils-1.3.0-beta.3.tgz#aaf25922b6df1ad056ebe911dfd7a8c201983df5"
     integrity sha1-qvJZIrbfGtBW6+kR39eowgGYPfU=
+  
+  "@tarojs/utils@1.3.0-beta.6":
+    version "1.3.0-beta.6"
+    resolved "https://registry.npm.taobao.org/@tarojs/utils/download/@tarojs/utils-1.3.0-beta.6.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40tarojs%2Futils%2Fdownload%2F%40tarojs%2Futils-1.3.0-beta.6.tgz#d293bc7b2ec1354718c75361f4d3605c1c6a2342"
+    integrity sha1-0pO8ey7BNUcYx1Nh9NNgXBxqI0I=
   
   "@tarojs/webpack-runner@1.3.0-beta.3":
     version "1.3.0-beta.3"
@@ -1983,6 +1997,11 @@ Lockfile:
     version "3.5.4"
     resolved "https://registry.npm.taobao.org/bluebird/download/bluebird-3.5.4.tgz#d6cc661595de30d5b3af5fcedd3c0b3ef6ec5714"
     integrity sha1-1sxmFZXeMNWzr1/O3TwLPvbsVxQ=
+  
+  blueimp-md5@^2.10.0:
+    version "2.10.0"
+    resolved "https://registry.npm.taobao.org/blueimp-md5/download/blueimp-md5-2.10.0.tgz#02f0843921f90dca14f5b8920a38593201d6964d"
+    integrity sha1-AvCEOSH5DcoU9biSCjhZMgHWlk0=
   
   bn.js@^4.0.0, bn.js@^4.1.0, bn.js@^4.1.1, bn.js@^4.4.0:
     version "4.11.8"

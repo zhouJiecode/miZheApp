@@ -2,9 +2,9 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import defaultAvatar from '@assets/default-avatar.png'
 import Vip from './vip'
-import bg from './assets/bg.png'
+// import bg from './assets/bg.png'
 import qrCode from './assets/qr-code.png'
-import level01 from './assets/level-01.png'
+// import level01 from './assets/level-01.png'
 import './index.scss'
 
 export default class Profile extends Component {
@@ -13,11 +13,11 @@ export default class Profile extends Component {
   }
 
   handleLogin = () => {
-    if (!this.props.userInfo.login) {
-      Taro.navigateTo({
-        url: '/pages/user-login/user-login'
-      })
-    }
+    // if (!this.props.userInfo.login) {
+    //   Taro.navigateTo({
+    //     url: '/pages/user-login/user-login'
+    //   })
+    // }
   }
 
   getUid = (uid) => {
@@ -31,16 +31,22 @@ export default class Profile extends Component {
   }
 
   render () {
-    const { userInfo } = this.props
+    const userInfo = {
+      avatar: 'https://ai-call-platform.oss-cn-hangzhou.aliyuncs.com/CompanyWebsite/OfficialWebsite/NewsPicture/news2@2x_1548753493146.jpg',
+      nickname: '小屁孩',
+      mark: '蜜折小当家',
+      uid: '0',
+      login: true
+    }// this.props
 
     return (
       <View className='user-profile'>
         {/* // NOTE 背景图片：Image 标签 + position absolute 实现 */}
-        <Image
+        {/* <Image
           className='user-profile__bg'
           src={bg}
           mode='widthFix'
-        />
+        /> */}
 
         <View className='user-profile__wrap'>
           <View className='user-profile__avatar'>
@@ -55,28 +61,29 @@ export default class Profile extends Component {
             <Text className='user-profile__info-name'>
               {userInfo.login ? userInfo.nickname : '未登录'}
             </Text>
-            {userInfo.login ?
-              <View className='user-profile__info-wrap'>
-                {/* XXX 没有全部 level 对应的图标，暂时都用 v1 */}
-                <Image className='user-profile__info-level' src={level01} />
-                <Text className='user-profile__info-uid'>
-                  {this.getUid(userInfo.uid)}
-                </Text>
-              </View> :
-              <Text className='user-profile__info-tip'>点击登录账号</Text>
+            {
+              // userInfo.login ?
+              // <View className='user-profile__info-wrap'>
+              //   {/* XXX 没有全部 level 对应的图标，暂时都用 v1 */}
+              //   <Image className='user-profile__info-level' src={level01} />
+              //   <Text className='user-profile__info-uid'>
+              //     {this.getUid(userInfo.uid)}
+              //   </Text>
+              // </View> :
+              <Text className='user-profile__info-tip'>{userInfo.mark}</Text>
             }
           </View>
 
           <View className='user-profile__extra'>
-            <View className='user-profile__extra-qr'>
+            {/* <View className='user-profile__extra-qr'> */}
               <Image
-                className='user-profile__extra-qr-img'
+                className='user-profile__extra-img'
                 src={qrCode}
               />
-            </View>
+            {/* </View> */}
           </View>
 
-          <Vip />
+          {/* <Vip /> */}
         </View>
       </View>
     )

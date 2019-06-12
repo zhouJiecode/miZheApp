@@ -8,11 +8,60 @@
 
 .item-info-param__title {
   padding: 30px 0;
+  overflow: hidden;
+
+  .item-info-param_order {
+    float: right;
+    height: 64px;
+    line-height: 62px;
+    border-radius: 4px;
+    background: $primary-color;
+  }
 
   &-txt {
+    display: inline-block;
     color: $text-color;
     font-size: 28px;
     line-height: 28px;
+    &.time {
+      margin-left: 2px;
+      color: $warn-color;
+    }
+  }
+}
+
+.warn {
+  color: $warn-color;
+}
+
+.ml10 {
+  margin-left: 10px;
+}
+
+.mr10 {
+  margin-right: 10px;
+}
+
+.mr9 {
+  margin-right: 9px;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.item-info-param__order {
+  .item-info-param__order-title {
+    .item-info-param__order-title-txt {
+
+    }
+  }
+  .item-info-param__order-persons {
+    .item-info-param__order-persons-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+    }
   }
 }
 

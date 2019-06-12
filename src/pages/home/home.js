@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text, ScrollView } from '@tarojs/components'
-import { Loading } from '@components'
+import { Loading, TapBar } from '@components'
 import { observer, inject } from '@tarojs/mobx'
 import { getWindowHeight } from '@utils/style'
 import Recommend from './recommend'
@@ -91,6 +91,7 @@ class Index extends Component {
             </View>
           }
         </ScrollView>
+        <TapBar></TapBar>
       </View>
     )
   }

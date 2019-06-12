@@ -1,7 +1,9 @@
 @import "./mixins.scss";
 
-$primary-color: #ab2b2b;
+$primary-color: #f34b4b; //#ab2b2b; // #F34B4B
 $disabled-color: #dddddd;
+
+$red: #f34b4b;
 
 $black: #000000;
 $white: #ffffff;
@@ -9,6 +11,9 @@ $white: #ffffff;
 $text-color: #333333;
 $text-color-light: #666666;
 $text-color-lighter: #999999;
+
+$warn-color: #E99209;
+$yellow: #E6D1A2;
 
 $border-color: #dddddd;
 $border-radius: 4px;
