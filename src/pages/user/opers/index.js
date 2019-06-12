@@ -59,9 +59,14 @@ export default class Menu extends Component {
   render () {
     return (
       <View className='user-menu'>
-        <AtList className='user-menu-orders' hasBorder={false}>
+        <View className='user-menu-orders' onClick={this.gotoOrders}>
+          <Text className='user-menu-orders-txt ml10'>我的订单</Text>
+          <View className='at-icon at-icon-settings'></View>
+          {/* <AtIcon value='chevron-right' size='48' color='#ccc'></AtIcon> */}
+        </View>
+        {/* <AtList className='user-menu-orders' hasBorder={false}>
           <AtListItem title='我的订单' arrow='right' onClick={this.gotoOrders} />
-        </AtList>
+        </AtList> */}
 
         <View className='at-row user-menu-block'>
           <View className='at-col flex-column'>

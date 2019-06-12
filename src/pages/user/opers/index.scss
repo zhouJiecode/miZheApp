@@ -8,6 +8,10 @@
   background: #fff;
   &-orders {
     width: 100%;
+    &-txt {
+      color: #333;
+      font-size: 32px;
+    }
   }
   &-block {
     margin-top: 10px;
@@ -22,6 +26,11 @@
       }
     }
   }
+}
+
+.at-icon-chevron-right {
+  font-size: 48px;
+  color: #ccc;
 }
 
 .user-menu__item {
