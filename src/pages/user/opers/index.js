@@ -63,22 +63,22 @@ export default class Menu extends Component {
           <AtListItem title='我的订单' arrow='right' onClick={this.gotoOrders} />
         </AtList>
 
-        <View className='at-row block'>
+        <View className='at-row user-menu-block'>
           <View className='at-col flex-column'>
-            <Image className='paying__img' src={payingPng} />
+            <Image className='paying__img img-icon' src={payingPng} />
             <Text className='item-info-param__title-txt ml10'>待付款</Text>
           </View>
           <View className='at-col flex-column'>
-            <Image className='shipping__img' src={shippingPng} />
+            <Image className='shipping__img img-icon' src={shippingPng} />
             <Text className='item-info-param__title-txt ml10'>待发货</Text>
           </View>
           <View className='at-col flex-column'>
-            <Image className='shiped__img' src={shipedPng} />
+            <Image className='shiped__img img-icon' src={shipedPng} />
             <Text className='item-info-param__title-txt ml10'>已发货</Text>
           </View>
         </View>
 
-        <View className='bonus block'>
+        <View className='bonus user-menu-block'>
           <View className='bonus-title'>
             <Text className='bonus-title-txt ml10'>可体现奖励金</Text>
           </View>
@@ -92,7 +92,8 @@ export default class Menu extends Component {
             <AtIcon value='chevron-right' size='30' color='#F00'></AtIcon>
           </View>
         </View>
-        <AtList hasBorder={false}>
+
+        <AtList hasBorder={false} className='user-menu-block'>
           <AtListItem
             thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png'
             title='收获地址'
@@ -104,8 +105,8 @@ export default class Menu extends Component {
             onClick={this.partners}
           />
         </AtList>
-        <AtList hasBorder={false}>
-          <AtListItem title='重新授权' arrow='right' onClick={this.authorization}/>
+        <AtList hasBorder={false} className='user-menu-block'>
+          <AtListItem title='重新授权' arrow='right' onClick={this.authorization} />
         </AtList>
       </View>
     )

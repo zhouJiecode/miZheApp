@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Image, Button } from '@tarojs/components'
-import { AtButton, AtToast } from 'taro-ui'
+// import { AtButton, AtToast } from 'taro-ui'
 import './index.scss'
 
 export default class InfoParam extends Component {
@@ -8,18 +8,13 @@ export default class InfoParam extends Component {
     list: []
   }
 
-  state = {
-    tipMsg: '',
-    showToast: false
-  }
+  state = {}
 
   placeOrder() {
-    this.tipMsg = '下单成功，请去购物车结算~'
-    this.showToast = true
-  }
-
-  handleToastClose() {
-    this.showToast = false
+    Taro.showToast({
+      title: '下单成功，请去购物车结算~',
+      icon: 'none'
+    })
   }
 
   render () {
@@ -37,10 +32,7 @@ export default class InfoParam extends Component {
           <Text className='item-info-param__title-txt'>:</Text>
           <Text className='item-info-param__title-txt time'>09</Text>
           <Text className='item-info-param__title-txt ml10'>结束</Text>
-          {/* <AtButton type='primary' onClick={this.onClick}>下单</AtButton> */}
-          {/* loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="warn" */}
           <Button type='warn' className='item-info-param_order' onClick={this.placeOrder}>下单</Button>
-          {/* <van-button custom-class="item-info-param_order" type="danger" click={this.onClick.bind(this)}>下单</van-button> */}
         </View>
 
         <View className='item-info-param__order'>
@@ -63,8 +55,6 @@ export default class InfoParam extends Component {
             }
           </View>
         </View>
-
-        <AtToast isOpened={this.state.showToast} text={this.state.tipMsg} onClose={this.handleToastClose}></AtToast>
       </View>
     )
   }
