@@ -59,59 +59,56 @@ export default class Menu extends Component {
   render () {
     return (
       <View className='user-menu'>
-        <View className='user-menu-orders' onClick={this.gotoOrders}>
-          <Text className='user-menu-orders-txt ml10'>我的订单</Text>
-          <View className='at-icon at-icon-settings'></View>
-          {/* <AtIcon value='chevron-right' size='48' color='#ccc'></AtIcon> */}
-        </View>
-        {/* <AtList className='user-menu-orders' hasBorder={false}>
-          <AtListItem title='我的订单' arrow='right' onClick={this.gotoOrders} />
-        </AtList> */}
+        <AtList className='user-menu-orders mt10' hasBorder={false}>
+          <AtListItem title='我的订单' arrow='right' onClick={this.gotoOrders} hasBorder={false} />
+        </AtList>
 
-        <View className='at-row user-menu-block'>
+        <View className='at-row user-menu-block mt10'>
           <View className='at-col flex-column'>
             <Image className='paying__img img-icon' src={payingPng} />
-            <Text className='item-info-param__title-txt ml10'>待付款</Text>
+            <Text className='at-row-txt'>待付款</Text>
           </View>
           <View className='at-col flex-column'>
             <Image className='shipping__img img-icon' src={shippingPng} />
-            <Text className='item-info-param__title-txt ml10'>待发货</Text>
+            <Text className='at-row-txt'>待发货</Text>
           </View>
           <View className='at-col flex-column'>
             <Image className='shiped__img img-icon' src={shipedPng} />
-            <Text className='item-info-param__title-txt ml10'>已发货</Text>
+            <Text className='at-row-txt'>已发货</Text>
           </View>
         </View>
 
-        <View className='bonus user-menu-block'>
+        <View className='bonus user-menu-block mt10'>
           <View className='bonus-title'>
-            <Text className='bonus-title-txt ml10'>可体现奖励金</Text>
+            <Text className='bonus-title-txt'>可提现奖励金</Text>
           </View>
           <View className='bonus-money'>
-            ¥<Text className='bonus-money-txt ml10'>507.00</Text>
+            ¥<Text className='bonus-money-txt'>507.00</Text>
             <Button type='warn' className='bonus-money-btn' onClick={this.withdrawal}>提现</Button>
           </View>
           <View className='bonus-detail'>
-            <AtIcon value='money' size='30' color='#F00'></AtIcon>
-            <Button type='warn' className='bonus-money-btn' onClick={this.withdrawal}>查看收入明细</Button>
-            <AtIcon value='chevron-right' size='30' color='#F00'></AtIcon>
+            <AtIcon className='mt-2' value='money' size='12' color='#F00'></AtIcon>
+            <Text className='bonus-detail-btn' onClick={this.withdrawal}>查看收入明细</Text>
+            <AtIcon className='mt-2' value='chevron-right' size='12' color='#F00'></AtIcon>
           </View>
         </View>
 
-        <AtList hasBorder={false} className='user-menu-block'>
+        <AtList hasBorder={false} className='user-menu-block mt10'>
           <AtListItem
             thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png'
             title='收获地址'
             onClick={this.setAddr}
+            hasBorder={false}
           />
           <AtListItem
             thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png'
             title='我的合伙人'
             onClick={this.partners}
+            hasBorder={false}
           />
         </AtList>
-        <AtList hasBorder={false} className='user-menu-block'>
-          <AtListItem title='重新授权' arrow='right' onClick={this.authorization} />
+        <AtList hasBorder={false} className='user-menu-block mt15'>
+          <AtListItem title='重新授权' arrow='right' onClick={this.authorization} hasBorder={false} />
         </AtList>
       </View>
     )

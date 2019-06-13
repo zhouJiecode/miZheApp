@@ -26,6 +26,8 @@ class Item extends Component {
       loaded: false,
       selected: {}
     }
+    console.log(this.$router)
+    console.log(Taro.getCurrentPages())
     this.itemId = parseInt(this.$router.params.itemId)
   }
 

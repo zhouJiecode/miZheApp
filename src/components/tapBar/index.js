@@ -32,7 +32,7 @@ export default class TapBar extends Component {
     const url = [
       '/pages/home/home', '/pages/cart/cart', '/pages/user/user'
     ][index || 0]
-    Taro.navigateTo({ url })
+    Taro[index === 1 ? 'navigateTo' : 'switchTab']({ url })
   }
 
   render () {

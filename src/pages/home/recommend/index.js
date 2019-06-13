@@ -27,7 +27,9 @@ export default class Recommend extends Component {
                 onClick={this.handleClick.bind(this, id)}
               >
                 {/* 商品图片 */}
-                <Image className='home-recommend__list-item-img' src={categoryItem.listPicUrl} />
+                <View className='home-recommend__list-item-img-con'>
+                  <Image className='home-recommend__list-item-img' src={categoryItem.listPicUrl} />
+                </View>
 
                 {/* 商品主描述 */}
                 {<Text className='home-recommend__list-item-desc' numberOfLines={1}>

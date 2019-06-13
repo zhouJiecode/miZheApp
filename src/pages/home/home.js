@@ -26,6 +26,7 @@ class Index extends Component {
   }
 
   async componentDidMount() {
+    console.log(Taro.getCurrentPages())
     const { home } = this.props
 
     await home.dispatchHome().then(() => {

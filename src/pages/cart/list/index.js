@@ -1,5 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
+import { AtInputNumber } from 'taro-ui'
 import { CheckboxItem, InputNumber } from '@components'
 import './index.scss'
 
@@ -77,10 +78,19 @@ export default class List extends Component {
                   ¥{item.actualPrice}
                 </Text>
                 <View className='cart-list__item-num'>
-                  <InputNumber
-                    num={item.cnt}
+                  <AtInputNumber
+                    customStyle={{'border-radius': '4px', height: '30px'}}
+                    className='custome-input-number'
+                    min={0}
+                    max={10}
+                    step={1}
+                    value={item.cnt}
                     onChange={this.handleUpdate.bind(this, item)}
                   />
+                  {/* <InputNumber
+                    num={item.cnt}
+                    onChange={this.handleUpdate.bind(this, item)}
+                  /> */}
                 </View>
               </View>
             </View>
