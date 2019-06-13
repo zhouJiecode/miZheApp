@@ -4,7 +4,7 @@ $page-padding: 24px;
 
 .user-menu {
   background: transparent;
-  color: $text-color;
+  color: $color-text-base;
   &-orders {
     width: 100%;
     display: flex;
@@ -54,7 +54,7 @@ $page-padding: 24px;
     position: relative;
     margin-top: 15px;
     padding: 6px 0 16px;
-    color: $primary-color;
+    color: $color-error;
     font-size: 34px;
     // border-bottom: 2px solid #E4EDF4;
     overflow: hidden;
@@ -72,12 +72,12 @@ $page-padding: 24px;
     }
     &-btn {
       float: right;
-      background: $primary-color;
+      background: $color-error;
     }
   }
   &-detail {
     text-align: center;
-    color: $primary-color;
+    color: $color-error;
     font-size: 24px;
     padding: 6px 0;
     &-btn {

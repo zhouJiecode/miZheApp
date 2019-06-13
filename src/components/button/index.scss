@@ -11,11 +11,11 @@
   background: #ffffff;
 
   &--primary {
-    background: $primary-color;
+    background: $color-error;
   }
 
   &--plain {
-    border: 1px solid $primary-color;
+    border: 1px solid $color-error;
     /* TODO background: transparent 的编译有问题 */
     background-color: transparent;
   }
@@ -26,7 +26,7 @@
 }
 
 .comp-button__txt {
-  color: $text-color;
+  color: $color-text-base;
   font-size: 28px;
 
   &--primary {
@@ -34,7 +34,7 @@
   }
 
   &--plain {
-    color: $primary-color;
+    color: $color-error;
   }
 
   &--disabled {

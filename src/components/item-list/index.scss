@@ -40,7 +40,7 @@
   }
 
   &-name {
-    color: $text-color;
+    color: $color-text-base;
     font-size: 28px;
     line-height: 40px;
     @include text-ellipsis;
@@ -53,18 +53,18 @@
   }
 
   &-price {
-    color: $black;
+    color: $color-black-0;
     font-size: 32px;
     line-height: 48px;
   }
 
   &-price--origin {
     margin-left: 14px;
-    color: $text-color-lighter;
+    color: $color-grey-2;
     font-size: 30px;
     font-weight: 200;
     line-height: 48px;
     text-decoration: line-through;
-    text-decoration-color: $text-color-lighter;
+    text-decoration-color: $color-grey-2;
   }
 }

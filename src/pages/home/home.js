@@ -2,13 +2,11 @@ import Taro from '@tarojs/taro'
 import { View, Text, ScrollView } from '@tarojs/components'
 import { Loading, TapBar } from '@components'
 import { observer, inject } from '@tarojs/mobx'
-import { getWindowHeight } from '@utils/style'
 import Recommend from './recommend'
 
 import './index.scss'
 
 const RECOMMEND_SIZE = 20
-
 
 @inject('home')
 @inject('cart')
@@ -75,7 +73,6 @@ class Index extends Taro.PureComponent {
         <ScrollView
           scrollY
           className='home__wrap'
-          // style={{ height: getWindowHeight() }}
         >
           {/* 为你推荐 */}
           <Recommend list={recommend} />

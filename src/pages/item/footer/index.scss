@@ -31,7 +31,7 @@
   @include border(right, 1px, solid, $border-color);
 
   &-txt {
-    color: $text-color;
+    color: $color-text-base;
     font-size: 28px;
     line-height: 28px;
   }

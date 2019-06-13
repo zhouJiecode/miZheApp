@@ -30,7 +30,7 @@ $footerHeight: 94px;
   }
 
   &-txt {
-    color: $text-color;
+    color: $color-text-base;
     font-size: 28px;
     line-height: 28px;
   }
@@ -42,7 +42,7 @@ $footerHeight: 94px;
   justify-content: center;
 
   &-txt {
-    color: $black;
+    color: $color-black-0;
     font-size: 28px;
     line-height: 28px;
     font-weight: bold;

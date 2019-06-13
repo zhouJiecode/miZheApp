@@ -58,3 +58,10 @@
   -webkit-box-orient: vertical;
   /*postcss-pxtransform rn eject disable*/
 }
+
+@function tint(
+  $color,
+  $percent
+) {
+  @return mix(#FFF, $color, $percent);
+}

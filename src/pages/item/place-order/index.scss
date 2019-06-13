@@ -3,7 +3,7 @@
 .item-info-param {
   margin-top: 20px;
   padding: 30px;
-  background: $white;
+  background: $color-white;
 }
 
 .item-info-param__title {
@@ -12,23 +12,23 @@
 
   .item-info-param_order {
     float: right;
-    background: $primary-color;
+    background: $color-error;
   }
 
   &-txt {
     display: inline-block;
-    color: $text-color;
+    color: $color-text-base;
     font-size: 28px;
     line-height: 28px;
     &.time {
       margin-left: 2px;
-      color: $warn-color;
+      color: $color-warning;
     }
   }
 }
 
 .warn {
-  color: $warn-color;
+  color: $color-warning;
 }
 
 .ml10 {
@@ -66,12 +66,12 @@
   display: flex;
   flex-direction: row;
   padding: 24px 0 28px;
-  @include border(top, 1px, dashed, $text-color-lighter);
+  @include border(top, 1px, dashed, $color-grey-2);
   @include eject(border-top-width, 1PX);
 
   &-name {
     width: 144px;
-    color: $text-color-lighter;
+    color: $color-grey-2;
     font-size: 24px;
     line-height: 30px;
   }
@@ -79,7 +79,7 @@
   &-value {
     flex: 1;
     margin-left: 6px;
-    color: $text-color;
+    color: $color-text-base;
     font-size: 24px;
     line-height: 30px;
   }

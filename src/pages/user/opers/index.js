@@ -1,7 +1,6 @@
 import Taro from '@tarojs/taro'
 import { View, Text, Image, Button } from '@tarojs/components'
-import jump from '@utils/jump'
-import { AtList, AtListItem, AtIcon } from "taro-ui"
+import { AtList, AtListItem, AtIcon, AtModal, AtModalHeader, AtModalContent, AtModalAction, AtInput } from 'taro-ui'
 import './index.scss'
 
 import payingPng from '../static/img/paying.png'
@@ -9,16 +8,13 @@ import shipedPng from '../static/img/shiped.png'
 import shippingPng from '../static/img/shipping.png'
 
 export default class Menu extends Taro.PureComponent {
-  handleClick = (menu) => {
-    // NOTE 时间关系，此处只实现帮助中心，用于演示多端 webview
-    if (menu.key === 'help') {
-      jump({ url: menu.url, title: menu.text })
-    } else {
-      Taro.showToast({
-        title: '目前只实现了帮助中心~',
-        icon: 'none'
-      })
-    }
+  state = {
+    money: undefined,
+    openModal: false
+  }
+
+  handleMoneyChange(money) {
+    this.setState({ money })
   }
 
   gotoOrders() {
@@ -29,10 +25,11 @@ export default class Menu extends Taro.PureComponent {
   }
 
   withdrawal() {
-    Taro.showToast({
-      title: '提现成功~',
-      icon: 'none'
-    })
+    this.setState({ openModal: true })
+    // Taro.showToast({
+    //   title: '提现成功~',
+    //   icon: 'none'
+    // })
   }
 
   setAddr() {
@@ -109,6 +106,21 @@ export default class Menu extends Taro.PureComponent {
         <AtList hasBorder={false} className='user-menu-block mt15'>
           <AtListItem title='重新授权' arrow='right' onClick={this.authorization} hasBorder={false} />
         </AtList>
+
+        <AtModal isOpened={this.state.openModal}>
+          <AtModalHeader>标题</AtModalHeader>
+          <AtModalContent>
+          <AtInput
+            name='value'
+            title='金额：'
+            type='number'
+            placeholder='请输入提现金额'
+            value={this.state.money}
+            onChange={this.handleMoneyChange.bind(this)}
+          />
+          </AtModalContent>
+          <AtModalAction> <Button>取消</Button> <Button>确定</Button> </AtModalAction>
+        </AtModal>
       </View>
     )
   }

@@ -2,7 +2,7 @@
 
 .item-gallery {
   position: relative;
-  background: $white;
+  background: $color-white;
 }
 
 .item-gallery__swiper {
@@ -32,11 +32,11 @@
   align-items: center;
   width: 58px;
   height: 30px;
-  background: $white;
+  background: $color-white;
   border-radius: $border-radius;
 
   &-txt {
-    color: $text-color;
+    color: $color-text-base;
     font-size: 24px;
   }
 }
