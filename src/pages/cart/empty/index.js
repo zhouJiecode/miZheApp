@@ -1,9 +1,9 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import empty from './assets/empty.png'
 import './index.scss'
 
-export default class Empty extends Component {
+export default class Empty extends Taro.PureComponent {
   render () {
     return (
       <View className='cart-empty'>

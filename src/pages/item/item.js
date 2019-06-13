@@ -1,21 +1,18 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
-import { Popup, Loading } from '@components'
+import { Loading } from '@components'
 import { observer, inject } from '@tarojs/mobx'
 import { getWindowHeight } from '@utils/style'
 import Gallery from './gallery'
 import InfoBase from './info-base'
 import InfoParam from './info-param'
-// import Detail from './detail'
 import PlaceOrder from './place-order'
-import Footer from './footer'
-import Spec from './spec'
 import './item.scss'
 
 @inject('item')
 @inject('cart')
 @observer
-class Item extends Component {
+class Item extends Taro.PureComponent {
   config = {
     navigationBarTitleText: '商品详情'
   }
@@ -26,8 +23,7 @@ class Item extends Component {
       loaded: false,
       selected: {}
     }
-    console.log(this.$router)
-    console.log(Taro.getCurrentPages())
+
     this.itemId = parseInt(this.$router.params.itemId)
   }
 

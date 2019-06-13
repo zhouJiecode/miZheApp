@@ -1,10 +1,10 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import gift from './assets/gift.png'
 import right from './assets/right.png'
 import './index.scss'
 
-export default class Vip extends Component {
+export default class Vip extends Taro.PureComponent {
   state = {
     x: 0
   }

@@ -1,4 +1,4 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
 import { Loading } from '@components'
 import { connect } from '@tarojs/redux'
@@ -10,7 +10,7 @@ import Banner from './banner'
 import './cate.scss'
 
 @connect(state => state.cate, { ...actions })
-class Cate extends Component {
+class Cate extends Taro.PureComponent {
   config = {
     navigationBarTitleText: '分类'
   }

@@ -1,9 +1,9 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro from '@tarojs/taro'
 import { View, Image, Input } from '@tarojs/components'
 import iconClose from './assets/clear.png'
 import './index.scss'
 
-export default class InputItem extends Component {
+export default class InputItem extends Taro.PureComponent {
   static defaultProps = {
     type: 'text',
     value: '',

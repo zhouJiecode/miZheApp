@@ -1,10 +1,10 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro from '@tarojs/taro'
 import { View, Image } from '@tarojs/components'
 import checkedIcon from './assets/checked.png'
 import unCheckedIcon from './assets/un-checked.png'
 import './index.scss'
 
-export default class CheckBoxItem extends Component {
+export default class CheckBoxItem extends Taro.PureComponent {
   static defaultProps = {
     compStyle: '',
     checked: false,

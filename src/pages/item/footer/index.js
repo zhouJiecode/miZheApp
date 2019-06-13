@@ -1,4 +1,4 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import { ButtonItem } from '@components'
 import jump from '@utils/jump'
@@ -20,7 +20,7 @@ const NAV_LIST = [{
   url: '/pages/cart/cart'
 }]
 
-export default class Footer extends Component {
+export default class Footer extends Taro.PureComponent {
   static defaultProps = {
     onAdd: () => {}
   }

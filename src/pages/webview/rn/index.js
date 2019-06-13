@@ -1,10 +1,10 @@
 /**
  * React Native 原生组件
  */
-import Taro, { Component } from '@tarojs/taro'
+import Taro from '@tarojs/taro'
 import { WebView } from 'react-native'
 
-export default class WebViewRN extends Component {
+export default class WebViewRN extends Taro.PureComponent {
   render() {
     return (
       <WebView

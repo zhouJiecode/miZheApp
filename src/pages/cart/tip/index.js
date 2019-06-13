@@ -1,9 +1,9 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import tipIcon from './assets/tip-icon.png'
 import './index.scss'
 
-export default class Tip extends Component {
+export default class Tip extends Taro.PureComponent {
   static defaultProps = {
     list: []
   }

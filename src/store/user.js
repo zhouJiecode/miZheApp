@@ -39,19 +39,17 @@ const homeStore = observable({
     login: true
   },
   async dispatchUser(payload) {
-    const res = await fetch({ url: API_USER, payload, method: undefined, fetchOptions: {
+    await fetch({ url: API_USER, payload, method: undefined, fetchOptions: {
       showToast: false,
       autoLogin: false
     } })
-    console.log(res)
     // this.userInfo = {
     //   ...action.payload,
     //   login: true
     // }
   },
   async dispatchLogin(payload) {
-    const res = await fetch({ url: API_USER_LOGIN, payload, method: undefined })
-    console.log(res)
+    await fetch({ url: API_USER_LOGIN, payload, method: undefined })
   },
   dispatchLogout: () => ({ type: USER_LOGOUT })
 })

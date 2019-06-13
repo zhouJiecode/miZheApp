@@ -1,4 +1,4 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import jump from '@utils/jump'
 import classNames from 'classnames'
@@ -64,7 +64,7 @@ const MENU_LIST = [{
 }]
 const COUNT_LINE = 3
 
-export default class Menu extends Component {
+export default class Menu extends Taro.PureComponent {
   handleClick = (menu) => {
     // NOTE 时间关系，此处只实现帮助中心，用于演示多端 webview
     if (menu.key === 'help') {

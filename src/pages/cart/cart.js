@@ -1,12 +1,8 @@
-import Taro, { Component } from '@tarojs/taro'
-import { View, Text, Image, ScrollView } from '@tarojs/components'
-import { ButtonItem, ItemList, Loading } from '@components'
+import Taro from '@tarojs/taro'
+import { View, ScrollView } from '@tarojs/components'
+import { Loading, TapBar } from '@components'
 import { observer, inject } from '@tarojs/mobx'
-import { API_CHECK_LOGIN } from '@constants/api'
-import fetch from '@utils/request'
 import { getWindowHeight } from '@utils/style'
-import Tip from './tip'
-import Gift from './gift'
 import Empty from './empty'
 import List from './list'
 import Footer from './footer'
@@ -15,14 +11,13 @@ import './cart.scss'
 @inject('home')
 @inject('cart')
 @observer
-class Index extends Component {
+class Index extends Taro.PureComponent {
   config = {
     navigationBarTitleText: '购物车'
   }
 
   state = {
-    loaded: false,
-    login: false
+    loaded: false
   }
 
   componentWillMount () {
@@ -33,7 +28,7 @@ class Index extends Component {
     const { home, cart } = this.props
     // fetch({ url: API_CHECK_LOGIN, showToast: false, autoLogin: false }).then((res) => {
     //   if (res) {
-        this.setState({ loaded: true, login: true })
+        this.setState({ loaded: true })
         cart.dispatchCart()
         cart.dispatchCartNum()
         home.dispatchRecommend()
@@ -51,7 +46,6 @@ class Index extends Component {
 
   render () {
     const { cart: { cartInfo } } = this.props
-    const { cartGroupList = [] } = cartInfo
     const cartList = [{
       cartItemList: [{
         pic: 'https://ai-call-platform.oss-cn-hangzhou.aliyuncs.com/CompanyWebsite/OfficialWebsite/NewsPicture/news2@2x_1548753493146.jpg',
@@ -143,6 +137,7 @@ class Index extends Component {
             />
           </View>
         }
+        <TapBar></TapBar>
       </View>
     )
   }

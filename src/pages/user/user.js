@@ -1,5 +1,5 @@
-import Taro, { Component } from '@tarojs/taro'
-import { View, Text, ScrollView } from '@tarojs/components'
+import Taro from '@tarojs/taro'
+import { View, ScrollView } from '@tarojs/components'
 import { TapBar } from '@components'
 import { observer, inject } from '@tarojs/mobx'
 import { getWindowHeight } from '@utils/style'
@@ -12,7 +12,7 @@ import './user.scss'
 @inject('user')
 @inject('cart')
 @observer
-class User extends Component {
+class User extends Taro.PureComponent {
   config = {
     navigationBarTitleText: '个人中心'
   }

@@ -1,4 +1,4 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro from '@tarojs/taro'
 import { View, WebView } from '@tarojs/components'
 /**
  * // NOTE Taro 的 RN 端还未提供 WebView 组件，可以引入原生组件来解决
@@ -13,7 +13,7 @@ import { View, WebView } from '@tarojs/components'
 import WebViewRN from './rn'
 import './webview.scss'
 
-export default class extends Component {
+export default class extends Taro.PureComponent {
   config = {
     navigationBarTitleText: ''
   }

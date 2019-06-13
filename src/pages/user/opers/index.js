@@ -1,4 +1,4 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro from '@tarojs/taro'
 import { View, Text, Image, Button } from '@tarojs/components'
 import jump from '@utils/jump'
 import { AtList, AtListItem, AtIcon } from "taro-ui"
@@ -8,7 +8,7 @@ import payingPng from '../static/img/paying.png'
 import shipedPng from '../static/img/shiped.png'
 import shippingPng from '../static/img/shipping.png'
 
-export default class Menu extends Component {
+export default class Menu extends Taro.PureComponent {
   handleClick = (menu) => {
     // NOTE 时间关系，此处只实现帮助中心，用于演示多端 webview
     if (menu.key === 'help') {
@@ -98,7 +98,6 @@ export default class Menu extends Component {
             thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png'
             title='收获地址'
             onClick={this.setAddr}
-            hasBorder={false}
           />
           <AtListItem
             thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png'

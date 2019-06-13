@@ -1,10 +1,10 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro from '@tarojs/taro'
 import { View, ScrollView, Image } from '@tarojs/components'
 import classNames from 'classnames'
 import closeIcon from './assets/close.png'
 import './index.scss'
 
-export default class Popup extends Component {
+export default class Popup extends Taro.PureComponent {
   static defaultProps = {
     visible: false,
     compStyle: '',

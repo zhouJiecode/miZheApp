@@ -1,4 +1,4 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro from '@tarojs/taro'
 import { View, Text, ScrollView } from '@tarojs/components'
 import { Loading, TapBar } from '@components'
 import { observer, inject } from '@tarojs/mobx'
@@ -13,7 +13,7 @@ const RECOMMEND_SIZE = 20
 @inject('home')
 @inject('cart')
 @observer
-class Index extends Component {
+class Index extends Taro.PureComponent {
 
   config = {
     navigationBarTitleText: '蜜折VIP'
@@ -26,7 +26,6 @@ class Index extends Component {
   }
 
   async componentDidMount() {
-    console.log(Taro.getCurrentPages())
     const { home } = this.props
 
     await home.dispatchHome().then(() => {

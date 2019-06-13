@@ -1,9 +1,9 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro from '@tarojs/taro'
 import { View, Text, Image, Button } from '@tarojs/components'
 // import { AtButton, AtToast } from 'taro-ui'
 import './index.scss'
 
-export default class InfoParam extends Component {
+export default class InfoParam extends Taro.PureComponent {
   static defaultProps = {
     list: []
   }

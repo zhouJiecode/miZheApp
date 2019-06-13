@@ -1,10 +1,10 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro from '@tarojs/taro'
 import { Button, Text } from '@tarojs/components'
 import { postcss } from '@utils/style'
 import classNames from 'classnames'
 import './index.scss'
 
-export default class ButtonItem extends Component {
+export default class ButtonItem extends Taro.PureComponent {
   static defaultProps = {
     compStyle: '',
     textStyle: '',

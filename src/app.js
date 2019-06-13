@@ -1,4 +1,4 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro from '@tarojs/taro'
 import { Provider } from '@tarojs/mobx'
 import '@tarojs/async-await'
 import 'taro-ui/dist/style/index.scss'
@@ -12,8 +12,10 @@ import './app.scss'
 // if (process.env.NODE_ENV !== 'production' && process.env.TARO_ENV === 'h5')  {
 //   require('nerv-devtools')
 // }
+// console.log(Taro.getCurrentPages())
+// console.log(this.$router)
 
-class App extends Component {
+class App extends Taro.PureComponent {
 
   config = {
     pages: [
@@ -42,12 +44,12 @@ class App extends Component {
         selectedIconPath: "./assets/tab-bar/home-active.png",
         text: "首页"
       },
-      // {
-      //   pagePath: 'pages/cart/cart',
-      //   iconPath: "./assets/tab-bar/cart.png",
-      //   selectedIconPath: "./assets/tab-bar/cart-active.png",
-      //   text: "结算"
-      // }, 
+      {
+        pagePath: 'pages/cart/cart',
+        iconPath: "./assets/tab-bar/cart.png",
+        selectedIconPath: "./assets/tab-bar/cart-active.png",
+        text: "结算"
+      },
       {
         pagePath: 'pages/user/user',
         iconPath: "./assets/tab-bar/user.png",

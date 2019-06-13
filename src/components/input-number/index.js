@@ -1,4 +1,4 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro from '@tarojs/taro'
 import { View, Image, Text } from '@tarojs/components'
 import classNames from 'classnames'
 import minusIcon from './assets/minus.png'
@@ -6,7 +6,7 @@ import minusDisabledIcon from './assets/minus-disabled.png'
 import plusIcon from './assets/plus.png'
 import './index.scss'
 
-export default class InputNumber extends Component {
+export default class InputNumber extends Taro.PureComponent {
   static defaultProps = {
     num: 0,
     compStyle: '',

@@ -3,8 +3,8 @@
 //   CART_ADD, CART_UPDATE, CART_UPDATE_CHECK
 // } from '@constants/cart'
 import {
-  API_CART, API_CART_NUM, API_CART_RECOMMEND,
-  API_CART_ADD, API_CART_UPDATE, API_CART_UPDATE_CHECK
+  API_CART,
+  API_CART_ADD, API_CART_UPDATE_CHECK
 } from '@constants/api'
 // import { createAction } from '@utils/redux'
 
@@ -80,24 +80,23 @@ import fetch from '@utils/request'
 import { observable } from 'mobx'
 
 // TODO H5、RN 还不支持 setTabBarBadge
-const updateTabBar = (count) => {
-  if (count > 0) {
-    Taro.setTabBarBadge({
-      index: 2,
-      text: `${count}`
-    })
-  } else {
-    Taro.removeTabBarBadge({
-      index: 2
-    })
-  }
-}
+// const updateTabBar = (count) => {
+//   if (count > 0) {
+//     Taro.setTabBarBadge({
+//       index: 2,
+//       text: `${count}`
+//     })
+//   } else {
+//     Taro.removeTabBarBadge({
+//       index: 2
+//     })
+//   }
+// }
 
 const homeStore = observable({
   cartInfo: {},
   recommend: {},
-  async dispatchCartNum(payload) {
-    console.log(payload)
+  async dispatchCartNum() {
     // updateTabBar(action.payload.countCornerMark)
   },
   async dispatchAdd(params) {

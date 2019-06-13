@@ -1,21 +1,18 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro from '@tarojs/taro'
 import { AtTabBar }  from 'taro-ui'
+import { observer, inject } from '@tarojs/mobx'
 
 import './index.scss'
 
-export default class TapBar extends Component {
+@inject('tabbar')
+@observer
+export default class TapBar extends Taro.PureComponent {
 
   config = {
     // navigationBarTitleText: '蜜折VIP'
   }
 
-  state = {
-    active: 0
-  }
-
-  async componentDidMount() {
-    
-  }
+  componentDidMount() {}
 
   componentWillMount () { }
 
@@ -29,13 +26,18 @@ export default class TapBar extends Component {
 
   // event.detail 的值为当前选中项的索引
   onChange(index) {
+    const { tabbar } = this.props
     const url = [
       '/pages/home/home', '/pages/cart/cart', '/pages/user/user'
     ][index || 0]
-    Taro[index === 1 ? 'navigateTo' : 'switchTab']({ url })
+
+    tabbar.setActiveTab(index)
+    Taro.switchTab({ url })
   }
 
   render () {
+    const { tabbar: { activeTab } } = this.props
+
     return (
       <AtTabBar
         fixed
@@ -45,7 +47,7 @@ export default class TapBar extends Component {
           { title: '个人', iconType: 'user', text: '100', max: '99' }
         ]}
         onClick={this.onChange.bind(this)}
-        current={this.state.active}
+        current={activeTab}
       />
     )
   }

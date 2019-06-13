@@ -1,9 +1,9 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import arrowRight from './aseets/arrow-right.png'
 import './index.scss'
 
-export default class HomeTitle extends Component {
+export default class HomeTitle extends Taro.PureComponent {
   static defaultProps = {
     title: '',
     link: ''

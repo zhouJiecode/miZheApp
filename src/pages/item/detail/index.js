@@ -1,8 +1,8 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro from '@tarojs/taro'
 import { View, Image } from '@tarojs/components'
 import './index.scss'
 
-export default class Detail extends Component {
+export default class Detail extends Taro.PureComponent {
   static defaultProps = {
     html: ''
   }

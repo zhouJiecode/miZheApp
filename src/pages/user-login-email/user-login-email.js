@@ -1,4 +1,4 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import md5 from 'blueimp-md5'
 import { ButtonItem, InputItem } from '@components'
@@ -13,7 +13,7 @@ const EMAIL_SUFFIX = [
 
 @inject('user')
 @observer
-class UserLoginEmail extends Component {
+class UserLoginEmail extends Taro.PureComponent {
   config = {
     navigationBarTitleText: '登录'
   }

@@ -1,4 +1,4 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import { ButtonItem } from '@components'
 import { CDN } from '@constants/api'
@@ -16,7 +16,7 @@ const LOGO = `${CDN}/a7ba557fde54270c71656222c7837396.png`
 //   marginTop: Taro.pxTransform(30)
 // }
 
-class UserLogin extends Component {
+class UserLogin extends Taro.PureComponent {
   config = {
     navigationBarTitleText: '登录'
   }

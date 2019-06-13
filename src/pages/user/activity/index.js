@@ -1,10 +1,10 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro from '@tarojs/taro'
 import { View, Image } from '@tarojs/components'
 import pic from './assets/activity.png'
 import picActive from './assets/activity-active.png'
 import './index.scss'
 
-export default class Activity extends Component {
+export default class Activity extends Taro.PureComponent {
   state = {
     active: false
   }

@@ -1,10 +1,10 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import { InputNumber } from '@components'
 import classNames from 'classnames'
 import './index.scss'
 
-export default class Spec extends Component {
+export default class Spec extends Taro.PureComponent {
   static defaultProps = {
     data: {},
     selected: {},
