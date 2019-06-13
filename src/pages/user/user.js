@@ -34,11 +34,11 @@ class User extends Taro.PureComponent {
     const { userInfo } = this.props
 
     return (
-      <View className='user'>
+      <View className='user page-con'>
         <ScrollView
           scrollY
           className='user__wrap'
-          style={{ height: getWindowHeight() }}
+          // style={{ height: getWindowHeight() }}
         >
           <Profile userInfo={userInfo} />
           <Opers></Opers>

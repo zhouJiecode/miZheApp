@@ -85,11 +85,11 @@ class Index extends Taro.PureComponent {
     // }
 
     return (
-      <View className='cart'>
+      <View className='cart page-con'>
         <ScrollView
           scrollY
           className='cart__wrap'
-          style={{ height: getWindowHeight() }}
+          // style={{ height: getWindowHeight() }}
         >
           {/* <Tip list={cartInfo.policyDescList} /> */}
           {isEmpty && <Empty />}

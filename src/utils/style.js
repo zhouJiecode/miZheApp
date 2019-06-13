@@ -10,8 +10,11 @@ const TAB_BAR_HEIGHT = 62
  */
 export function getWindowHeight(showTabBar = true) {
   const info = Taro.getSystemInfoSync()
-  const { windowHeight, statusBarHeight, titleBarHeight } = info
+  const { windowHeight, statusBarHeight, titleBarHeight, screenHeight } = info
   const tabBarHeight = showTabBar ? TAB_BAR_HEIGHT : 0
+
+  console.log('----------------')
+  console.log(windowHeight + ';' + screenHeight + ';' + statusBarHeight + ';' + tabBarHeight)
 
   if (process.env.TARO_ENV === 'rn') {
     return windowHeight - statusBarHeight - NAVIGATOR_HEIGHT - tabBarHeight
@@ -26,7 +29,7 @@ export function getWindowHeight(showTabBar = true) {
     return `${windowHeight - statusBarHeight - titleBarHeight + (showTabBar ? 0 : TAB_BAR_HEIGHT)}px`
   }
 
-  return `${windowHeight - tabBarHeight}px`
+  return `${screenHeight - statusBarHeight - tabBarHeight}px`
 }
 
 /**

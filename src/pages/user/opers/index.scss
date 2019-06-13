@@ -1,5 +1,6 @@
 @import "src/styles/theme.scss";
 $bg: #fff;
+$page-padding: 24px;
 
 .user-menu {
   background: transparent;
@@ -8,15 +9,10 @@ $bg: #fff;
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 24px 24px;
+    padding: $page-padding;
     align-items: center;
     margin-top: 10px;
     background: $bg;
-    border-bottom: 1px solid #f9f9f9;
-    &-txt {
-      color: #333;
-      font-size: 32px;
-    }
   }
   &-block {
     margin-top: 10px;
@@ -48,19 +44,29 @@ $bg: #fff;
 .bonus {
   width: 100%;
   background: $bg;
-  padding: 0 24px;
+  padding: 0 $page-padding;
   &-title {
     &-txt {
       font-size: 24px;
     }
   }
   &-money {
+    position: relative;
     margin-top: 15px;
-    padding: 6px 0;
+    padding: 6px 0 16px;
     color: $primary-color;
     font-size: 34px;
-    border-bottom: 1px solid #f9f9f9;
+    // border-bottom: 2px solid #E4EDF4;
     overflow: hidden;
+    &::after {
+      content: '';
+      height: 2px;
+      background: #e4edf4;
+      position: absolute;
+      left: -24px;
+      right: -24px;
+      bottom: 0;
+    }
     &-txt {
       margin-left: 10px;
     }
@@ -82,34 +88,4 @@ $bg: #fff;
 .at-icon-chevron-right {
   font-size: 48px;
   color: #ccc;
-}
-
-.user-menu__item {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 33.3%;
-  height: 180px;
-  @include border(right bottom, 1px, solid, rgba(0, 0, 0, .15));
-
-  &-img {
-    width: 52px;
-    height: 52px;
-  }
-
-  &-txt {
-    margin-top: 16px;
-    color: #333;
-    font-size: 24px;
-    line-height: 24px;
-  }
-
-  &--nth {
-    border-right-width: 0;
-  }
-
-  &--last {
-    border-bottom-width: 0;
-  }
 }

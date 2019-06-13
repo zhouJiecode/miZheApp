@@ -71,11 +71,11 @@ class Index extends Taro.PureComponent {
 
     const { home: { recommend } } = this.props
     return (
-      <View className='home'>
+      <View className='home page-con'>
         <ScrollView
           scrollY
           className='home__wrap'
-          style={{ height: getWindowHeight() }}
+          // style={{ height: getWindowHeight() }}
         >
           {/* 为你推荐 */}
           <Recommend list={recommend} />
