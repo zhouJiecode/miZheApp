@@ -57,11 +57,6 @@ class App extends Taro.PureComponent {
         text: "个人"
       }]
     }
-    // usingComponents: {
-    //   'van-button' : './components/vant-app/button/index',
-    //   'van-tabbar': './components/vant-app/tabbar/index',
-    //   'van-tabbar-item': './components/vant-app/tabbar-item/index'
-    // }
   }
 
   componentWillMount() {

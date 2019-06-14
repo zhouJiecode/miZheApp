@@ -46,11 +46,8 @@ export default class Menu extends Taro.PureComponent {
     })
   }
 
-  authorization() {
-    Taro.showToast({
-      title: '授权页尚未实现~',
-      icon: 'none'
-    })
+  onGetUserInfo() {
+    console.log(arguments)
   }
 
   render () {
@@ -103,12 +100,23 @@ export default class Menu extends Taro.PureComponent {
             hasBorder={false}
           />
         </AtList>
-        <AtList hasBorder={false} className='user-menu-block mt15'>
+        <View className='user-menu-block mt15 user-menu-auth'>
+          <Text className='user-menu-auth-txt'>重新授权</Text>
+          <Button type='warn' open-type='getUserInfo' className='user-menu-auth-btn' onGetUserInfo={this.onGetUserInfo}>提现</Button>
+        </View>
+        {/* <AtList hasBorder={false} className='user-menu-block mt15'>
           <AtListItem title='重新授权' arrow='right' onClick={this.authorization} hasBorder={false} />
-        </AtList>
+        </AtList> */}
 
-        <AtModal isOpened={this.state.openModal}>
-          <AtModalHeader>标题</AtModalHeader>
+        <AtModal
+          title='提现'
+          isOpened={this.state.openModal}
+          cancelText='取消'
+          confirmText='确认提现'
+          onCancel={this.handleMoneyChange}
+          onConfirm={this.handleMoneyChange}
+        >
+          {/* <AtModalHeader>标题</AtModalHeader> */}
           <AtModalContent>
           <AtInput
             name='value'
@@ -119,7 +127,7 @@ export default class Menu extends Taro.PureComponent {
             onChange={this.handleMoneyChange.bind(this)}
           />
           </AtModalContent>
-          <AtModalAction> <Button>取消</Button> <Button>确定</Button> </AtModalAction>
+          {/* <AtModalAction> <Button>取消</Button> <Button>确定</Button> </AtModalAction> */}
         </AtModal>
       </View>
     )
