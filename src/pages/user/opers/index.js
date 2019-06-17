@@ -26,10 +26,21 @@ export default class Menu extends Taro.PureComponent {
 
   withdrawal() {
     this.setState({ openModal: true })
-    // Taro.showToast({
-    //   title: '提现成功~',
-    //   icon: 'none'
-    // })
+    
+  }
+
+  handleCancel() {
+    // 取消提现
+    this.setState({ openModal: false })
+  }
+
+  handleConfirm() {
+    // 确认提现
+    this.setState({ openModal: false })
+    Taro.showToast({
+      title: '提现成功~',
+      icon: 'none'
+    })
   }
 
   setAddr() {
@@ -113,8 +124,8 @@ export default class Menu extends Taro.PureComponent {
           isOpened={this.state.openModal}
           cancelText='取消'
           confirmText='确认提现'
-          onCancel={this.handleMoneyChange}
-          onConfirm={this.handleMoneyChange}
+          onCancel={this.handleCancel}
+          onConfirm={this.handleConfirm}
         >
           {/* <AtModalHeader>标题</AtModalHeader> */}
           <AtModalContent>
