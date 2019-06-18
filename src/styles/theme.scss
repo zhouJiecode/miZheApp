@@ -69,6 +69,7 @@ $color-border-light: tint($color-border-base, 30%) !default;
 $color-border-lighter: tint($color-border-base, 50%) !default;
 $color-border-lightest: tint($color-border-base, 80%) !default;
 $color-border-grey: #CCC !default;
+$color-border-grey1: tint($color-border-grey, 60%) !default;
 
 /* 图标颜色 */
 $color-icon-base: #CCC !default;

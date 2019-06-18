@@ -26,6 +26,24 @@ $page-padding: 24px;
       }
     }
   }
+  &-money-input {
+    border: 2px solid $color-border-grey1;
+    border-radius: 8px;
+    padding: 10px 17px;
+  }
+  &-auth {
+    &-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 102px;
+      border: none;
+      background: #fff;
+      width: 100%;
+      overflow: hidden;
+      font-size: 32px;
+    }
+  }
 }
 
 .at-row {

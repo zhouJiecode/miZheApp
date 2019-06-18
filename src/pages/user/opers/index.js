@@ -1,20 +1,24 @@
 import Taro from '@tarojs/taro'
-import { View, Text, Image, Button } from '@tarojs/components'
-import { AtList, AtListItem, AtIcon, AtModal, AtModalHeader, AtModalContent, AtModalAction, AtInput } from 'taro-ui'
+import { View, Text, Image, Button, Input } from '@tarojs/components'
+import { AtList, AtListItem, AtIcon, AtInput } from 'taro-ui'
+import { observer, inject } from '@tarojs/mobx'
+import { AtModal } from '@components'
 import './index.scss'
 
 import payingPng from '../static/img/paying.png'
 import shipedPng from '../static/img/shiped.png'
 import shippingPng from '../static/img/shipping.png'
 
+@inject('user')
+@observer
 export default class Menu extends Taro.PureComponent {
   state = {
     money: undefined,
     openModal: false
   }
 
-  handleMoneyChange(money) {
-    this.setState({ money })
+  handleMoneyChange(e) {
+    this.setState({ money: e.detail.value || undefined })
   }
 
   gotoOrders() {
@@ -57,8 +61,10 @@ export default class Menu extends Taro.PureComponent {
     })
   }
 
-  onGetUserInfo() {
+  onGetUserInfo({ currentTarget: { userInfo } }) {
+    const { user } = this.props
     console.log(arguments)
+    user.setUserInfo({ userInfo })
   }
 
   render () {
@@ -101,7 +107,7 @@ export default class Menu extends Taro.PureComponent {
         <AtList hasBorder={false} className='user-menu-block mt10'>
           <AtListItem
             thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png'
-            title='收获地址'
+            title='收货地址'
             onClick={this.setAddr}
           />
           <AtListItem
@@ -112,24 +118,22 @@ export default class Menu extends Taro.PureComponent {
           />
         </AtList>
         <View className='user-menu-block mt15 user-menu-auth'>
-          <Text className='user-menu-auth-txt'>重新授权</Text>
-          <Button type='warn' open-type='getUserInfo' className='user-menu-auth-btn' onGetUserInfo={this.onGetUserInfo}>提现</Button>
+          <Button open-type='getUserInfo' className='user-menu-auth-btn' onGetUserInfo={this.onGetUserInfo}>
+            <Text className='user-menu-auth-btn-txt'>重新授权</Text>
+            <AtIcon className='font48 float-r place-holder' value='chevron-right' size='12' color='#F00'></AtIcon>
+          </Button>
         </View>
-        {/* <AtList hasBorder={false} className='user-menu-block mt15'>
-          <AtListItem title='重新授权' arrow='right' onClick={this.authorization} hasBorder={false} />
-        </AtList> */}
 
         <AtModal
           title='提现'
           isOpened={this.state.openModal}
           cancelText='取消'
           confirmText='确认提现'
-          onCancel={this.handleCancel}
-          onConfirm={this.handleConfirm}
+          onCancel={this.handleCancel.bind(this)}
+          onConfirm={this.handleConfirm.bind(this)}
         >
-          {/* <AtModalHeader>标题</AtModalHeader> */}
-          <AtModalContent>
-          <AtInput
+          <Input
+            className='user-menu-money-input'
             name='value'
             title='金额：'
             type='number'
@@ -137,8 +141,6 @@ export default class Menu extends Taro.PureComponent {
             value={this.state.money}
             onChange={this.handleMoneyChange.bind(this)}
           />
-          </AtModalContent>
-          {/* <AtModalAction> <Button>取消</Button> <Button>确定</Button> </AtModalAction> */}
         </AtModal>
       </View>
     )

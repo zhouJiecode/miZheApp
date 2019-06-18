@@ -1,5 +1,6 @@
 import Taro from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
+import { AtIcon } from 'taro-ui'
 import defaultAvatar from '@assets/default-avatar.png'
 import qrCode from './assets/qr-code.png'
 import './index.scss'
@@ -28,14 +29,14 @@ export default class Profile extends Taro.PureComponent {
   }
 
   render () {
-    const userInfo = {
-      avatar: 'https://ai-call-platform.oss-cn-hangzhou.aliyuncs.com/CompanyWebsite/OfficialWebsite/NewsPicture/news2@2x_1548753493146.jpg',
-      nickname: '小屁孩',
-      mark: '蜜折小当家',
-      uid: '0',
-      login: true
-    }// this.props
-
+    const { userInfo } = this.props
+    // avatarUrl: "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLzQ47l2RKcDfyJ96Lfs2JyuDvy7W7Pqx8ulNpnQeGAtEotOTdWHCYHkibjZ3tuKV6O4bxEsGh9D4g/132",
+    // city: "Nanjing",
+    // country: "China",
+    // gender: 1,
+    // language: "zh_CN",
+    // nickName: "周杰",
+    // province: "Jiangsu",
     return (
       <View className='user-profile'>
         {/* // NOTE 背景图片：Image 标签 + position absolute 实现 */}
@@ -49,35 +50,28 @@ export default class Profile extends Taro.PureComponent {
           <View className='user-profile__avatar'>
             <Image
               className='user-profile__avatar-img'
-              src={userInfo.avatar || defaultAvatar}
+              src={userInfo.avatarUrl || defaultAvatar}
               onClick={this.handleLogin}
             />
           </View>
 
           <View className='user-profile__info' onClick={this.handleLogin}>
             <Text className='user-profile__info-name'>
-              {userInfo.login ? userInfo.nickname : '未登录'}
+              {userInfo.login ? userInfo.nickName : '未登录'}
             </Text>
             {
-              // userInfo.login ?
-              // <View className='user-profile__info-wrap'>
-              //   {/* XXX 没有全部 level 对应的图标，暂时都用 v1 */}
-              //   <Image className='user-profile__info-level' src={level01} />
-              //   <Text className='user-profile__info-uid'>
-              //     {this.getUid(userInfo.uid)}
-              //   </Text>
-              // </View> :
-              <Text className='user-profile__info-tip'>{userInfo.mark}</Text>
+              <View className='user-profile__info-tip'>
+                <AtIcon className='font32 mr5 lineH50' value='star-2' color='#E6D1A2'></AtIcon>
+                <Text className='user-profile__info-tip-text'>蜜折小当家</Text>
+              </View>
             }
           </View>
 
           <View className='user-profile__extra'>
-            {/* <View className='user-profile__extra-qr'> */}
-              <Image
-                className='user-profile__extra-img'
-                src={qrCode}
-              />
-            {/* </View> */}
+            <Image
+              className='user-profile__extra-img'
+              src={qrCode}
+            />
           </View>
 
           {/* <Vip /> */}

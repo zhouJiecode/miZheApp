@@ -2,11 +2,10 @@ import Taro from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
 import { TapBar } from '@components'
 import { observer, inject } from '@tarojs/mobx'
-import { getWindowHeight } from '@utils/style'
 import Profile from './profile'
 // import Menu from './menu'
 import Opers from './opers'
-import Activity from './activity'
+// import Activity from './activity'
 import './user.scss'
 
 @inject('user')
@@ -31,16 +30,15 @@ class User extends Taro.PureComponent {
   }
 
   render () {
-    const { userInfo } = this.props
+    const { user } = this.props
 
     return (
       <View className='user page-con'>
         <ScrollView
           scrollY
           className='user__wrap'
-          // style={{ height: getWindowHeight() }}
         >
-          <Profile userInfo={userInfo} />
+          <Profile userInfo={user.userInfo} />
           <Opers></Opers>
           {/* <Menu />
           {userInfo.login &&
@@ -50,9 +48,9 @@ class User extends Taro.PureComponent {
           }
           <View className='user__empty' /> */}
         </ScrollView>
-        <View className='user__activity'>
+        {/* <View className='user__activity'>
           <Activity />
-        </View>
+        </View> */}
         <TapBar></TapBar>
       </View>
     )

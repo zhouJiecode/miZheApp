@@ -24,12 +24,12 @@ export default class Activity extends Taro.PureComponent {
 
   render () {
     return (
-      <View className='user-activity'>
-        <Image
-          className='user-activity__img'
-          src={this.state.active ? picActive : pic}
-        />
-      </View>
+      // <View className='user-activity'>
+      //   <Image
+      //     className='user-activity__img'
+      //     src={this.state.active ? picActive : pic}
+      //   />
+      // </View>
     )
   }
 }
