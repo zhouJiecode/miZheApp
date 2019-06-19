@@ -2,7 +2,6 @@ import Taro from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
 import { Loading, TapBar } from '@components'
 import { observer, inject } from '@tarojs/mobx'
-import { getWindowHeight } from '@utils/style'
 import Empty from './empty'
 import List from './list'
 import Footer from './footer'
@@ -89,7 +88,6 @@ class Index extends Taro.PureComponent {
         <ScrollView
           scrollY
           className='cart__wrap'
-          // style={{ height: getWindowHeight() }}
         >
           {/* <Tip list={cartInfo.policyDescList} /> */}
           {isEmpty && <Empty />}

@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
-import { AtTabBar }  from 'taro-ui'
 import { observer, inject } from '@tarojs/mobx'
+import AtTabBar from '../tab-bar'
 
 import './index.scss'
 
@@ -43,7 +43,7 @@ export default class TapBar extends Taro.PureComponent {
         fixed
         tabList={[
           { title: '首页', iconType: 'home', iconType: 'clock', text: 'new' },
-          { title: '结算', iconType: 'shopping-cart' },
+          { title: '结算', iconType: 'shopping-cart', dot: true },
           { title: '个人', iconType: 'user', text: '100', max: '99' }
         ]}
         onClick={this.onChange.bind(this)}

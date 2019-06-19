@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
 import { View, Text, Image, Button, Input } from '@tarojs/components'
-import { AtList, AtListItem, AtIcon, AtInput } from 'taro-ui'
+import { AtList, AtListItem, AtIcon } from 'taro-ui'
 import { observer, inject } from '@tarojs/mobx'
 import { AtModal } from '@components'
 import './index.scss'
@@ -8,6 +8,7 @@ import './index.scss'
 import payingPng from '../static/img/paying.png'
 import shipedPng from '../static/img/shiped.png'
 import shippingPng from '../static/img/shipping.png'
+import personsPng from '../../../assets/persons.png'
 
 @inject('user')
 @observer
@@ -104,14 +105,19 @@ export default class Menu extends Taro.PureComponent {
           </View>
         </View>
 
-        <AtList hasBorder={false} className='user-menu-block mt10'>
+        <AtList hasBorder={false} className='user-menu-block mt10 pr24'>
           <AtListItem
-            thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png'
+            // thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png'
+            iconInfo={{
+              value: 'map-pin',
+              color: '#E6D1A2',
+              size: 30
+            }}
             title='收货地址'
             onClick={this.setAddr}
           />
           <AtListItem
-            thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png'
+            thumb={personsPng}
             title='我的合伙人'
             onClick={this.partners}
             hasBorder={false}
