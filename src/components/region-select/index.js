@@ -12,36 +12,11 @@ export default class RegionSelect extends Taro.PureComponent {
     regionValue: [],
     onHide: () => {}
   }
-  // properties: {
-  //   regionValue: {
-  //     type: Array,
-  //     value: [],
-  //     observer: function(newVal, oldVal) {
-  //       if (newVal.length > 0) {
-  //         let select = -1
-  //         for (let i = newVal.length - 1 i >= 0 i--) {
-  //           if (newVal[i].id !== '') {
-  //             select = i
-  //             break
-  //           }
-  //         }
-  //         // 除最低级别区（select = 2）以外，需要获取当前级别下一级的数据
-  //         this.setData({
-  //           ['region.tabs']: newVal,
-  //           ['region.select']: select < 2 ? select+1 : select,
-  //         }, () => {
-  //           this.setData({
-  //             area: this.getChildArea(select < 2 ? select+1 : select),
-  //           })
-  //         })
-  //       }
-  //     },
-  //   },
-  // },
+
   state = {
     area: getAreaJson(),
     hide: true,
-    // timeout: null,
+    timeout: null,
     region: {
       tabs: [
         {
@@ -61,15 +36,46 @@ export default class RegionSelect extends Taro.PureComponent {
     }
   }
 
-  componentWillReceiveProps({ show: nextShow }) {
+  static getDerivedStateFromProps({ regionValue }) {
+    if (regionValue && regionValue.length === 2) {
+      let select = regionValue[2] && regionValue[2].id ? 2 : 0
+
+      // 除最低级别区（select = 2）以外，需要获取当前级别下一级的数据
+      return {
+        region: {
+          tabs: regionValue,
+          select
+        },
+        area: this.getChildArea(select)
+      }
+    }
+
+    return null
+  }
+
+  // componentWillReceiveProps({ show: nextShow }) {
+  //   const { show } = this.props
+  //   console.log(nextShow)
+  //   console.log('nextShow')
+
+  //   if (nextShow && !show) {
+  //     this.showMask()
+  //     // 显示
+  //   } else if (!nextShow && show) {
+  //     // 隐藏
+  //     this.hideMask()
+  //   }
+  // }
+
+  componentDidUpdate({ show: preShow }) {
     const { show } = this.props
 
-    if (nextShow && !show) {
-      this.showMask()
-      // 显示
-    } else if (!nextShow && show) {
-      // 隐藏
+    if (preShow && !show) {
       this.hideMask()
+      // 隐藏
+    } else if (!preShow && show) {
+      // 显示
+      this.showMask()
     }
   }
 
@@ -98,10 +104,10 @@ export default class RegionSelect extends Taro.PureComponent {
   emitHideRegion() {
     let { region } = this.state
     const { onHide } = this.props
-    let addr
+    let addr = []
 
     if (region.tabs[2].id) {
-      addr = region.tabs.map(item => item.name).join('')
+      addr = region.tabs
     }
 
     onHide(addr)

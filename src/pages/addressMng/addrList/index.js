@@ -5,13 +5,12 @@ import './index.scss'
 
 export default class AddrList extends Taro.PureComponent {
   static defaultProps = {
-    list: []
+    list: [],
+    onEdit: () => {}
   }
 
   handleClick = (id) => {
-    Taro.navigateTo({
-      url: `/pages/addAddr/index?id=${id}`
-    })
+    this.props.onEdit(id)
   }
 
   render () {

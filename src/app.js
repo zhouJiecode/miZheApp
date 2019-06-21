@@ -26,8 +26,7 @@ class App extends Taro.PureComponent {
       'pages/user-login-email/user-login-email',
       'pages/webview/webview',
       'pages/item/item',
-      'pages/addressMng/index',
-      'pages/addAddr/index'
+      'pages/addressMng/index'
     ],
     window: {
       backgroundTextStyle: 'light',

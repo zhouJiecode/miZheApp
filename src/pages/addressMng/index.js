@@ -1,9 +1,10 @@
 import Taro from '@tarojs/taro'
 import { View, Text, ScrollView, Button } from '@tarojs/components'
-import { AtIcon } from 'taro-ui'
+import { AtIcon, AtDrawer } from 'taro-ui'
 import { Loading } from '@components'
 import { observer, inject } from '@tarojs/mobx'
 import AddrList from './addrList'
+import AddAddr from './addAddr'
 
 import './index.scss'
 
@@ -16,7 +17,8 @@ class Index extends Taro.PureComponent {
   }
 
   state = {
-    loaded: false
+    loaded: false,
+    showAddAddr: false
   }
 
   componentWillMount () {
@@ -30,10 +32,16 @@ class Index extends Taro.PureComponent {
     return user.getUserAddrList()
   }
 
+  editAddr() {
+    this.setState({ showAddAddr: true })
+  }
+
   addAddr() {
-    Taro.navigateTo({
-      url: `/pages/addAddr/index`
-    })
+    this.setState({ showAddAddr: true })
+  }
+
+  onAddSuccess() {
+    this.setState({ showAddAddr: false })
   }
 
   render () {
@@ -49,7 +57,7 @@ class Index extends Taro.PureComponent {
           className='addr__wrap'
         >
           {list.length &&
-            <AddrList list={list}></AddrList>
+            <AddrList list={list} onEdit={this.editAddr.bind(this)}></AddrList>
           }
 
           {!list.length &&
@@ -62,6 +70,15 @@ class Index extends Taro.PureComponent {
           <AtIcon className='mr5 mt-4' value='add' size='12' color='#fff'></AtIcon>
           新建地址
         </Button>
+
+        <AtDrawer
+          show={this.state.showAddAddr}
+          width='100%'
+          right
+          mask
+        >
+          <AddAddr onSuccess={this.onAddSuccess.bind(this)}></AddAddr>
+        </AtDrawer>
       </View>
     )
   }

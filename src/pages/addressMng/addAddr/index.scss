@@ -41,19 +41,53 @@
   }
 }
 
+.at-input {
+  position:relative;
+  padding: 24px 0;
+  color: #333;
+  background-color: #FFF;
+  margin-left: 32px;
+  margin-bottom: 1PX;
+  position: relative;  
+}  
+
+.at-input__container {
+  display: flex;
+  align-items:center;
+}  
+
 .at-input__children-con {
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   position: relative;
   font-size: 24px;
   padding-right: $page-padding;
+  text-align: left;
+  overflow: hidden;
+  &.start {
+    justify-content: flex-start;
+  }
+  &.inline-block {
+    display: inline-block;
+  }
   &.block {
     display: flex;
   }
 }
 
+.at-input__title {
+  flex: 172px 0 0;
+  margin-right: 16px;
+  font-size: 32px;
+  line-height: 1.5;
+  vertical-align: middle;
+  text-align: left;
+}
+
 .at-input__container {
+  align-items: flex-start;
   &.block {
     display: block;
   }
@@ -61,6 +95,7 @@
 
 .add-tag {
   min-width: 128px;
+  float: left;
   border: 1px solid $color-after-line;
   height: 64px;
   line-height: 60px;
