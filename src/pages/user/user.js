@@ -3,9 +3,7 @@ import { View, ScrollView } from '@tarojs/components'
 import { TapBar } from '@components'
 import { observer, inject } from '@tarojs/mobx'
 import Profile from './profile'
-// import Menu from './menu'
 import Opers from './opers'
-// import Activity from './activity'
 import './user.scss'
 
 @inject('user')
@@ -17,6 +15,10 @@ class User extends Taro.PureComponent {
     navigationBarTitleText: '个人中心'
   }
 
+  constructor(props) {
+    super(props)
+  }
+
   componentDidShow() {
     const { user, cart } = this.props
 
@@ -24,14 +26,8 @@ class User extends Taro.PureComponent {
     cart.dispatchCartNum()
   }
 
-  handleLogin = () => {
-    Taro.navigateTo({
-      url: '/pages/user-login/user-login'
-    })
-  }
-
   render () {
-    const { user, app: { enableHideBar } } = this.props
+    const { user: { userInfo }, app: { enableHideBar } } = this.props
 
     return (
       <View className={'user page-con ' + (enableHideBar ? '' : 'no-tab-bar')}>
@@ -39,7 +35,7 @@ class User extends Taro.PureComponent {
           scrollY
           className='user__wrap'
         >
-          <Profile userInfo={user.userInfo} />
+          <Profile userInfo={userInfo} />
           <Opers></Opers>
           {/* <Menu />
           {userInfo.login &&

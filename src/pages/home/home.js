@@ -55,7 +55,6 @@ class Index extends Taro.PureComponent {
     }
 
     const { home: { recommend }, app: { enableHideBar } } = this.props
-    console.log(enableHideBar)
     return (
       <View className={'home page-con ' + (enableHideBar ? '' : 'no-tab-bar')}>
         <ScrollView

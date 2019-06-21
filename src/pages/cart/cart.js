@@ -1,5 +1,5 @@
 import Taro from '@tarojs/taro'
-import { View, ScrollView } from '@tarojs/components'
+import { View, ScrollView, Button, Text } from '@tarojs/components'
 import { Loading, TapBar } from '@components'
 import { observer, inject } from '@tarojs/mobx'
 import Empty from './empty'
@@ -10,6 +10,7 @@ import './cart.scss'
 @inject('home')
 @inject('cart')
 @inject('app')
+@inject('user')
 @observer
 class Index extends Taro.PureComponent {
   config = {
@@ -20,32 +21,23 @@ class Index extends Taro.PureComponent {
     loaded: false
   }
 
-  componentWillMount () {
-    // Taro.hideTabBar()
-  }
-
   componentDidShow() {
     const { home, cart } = this.props
-    // fetch({ url: API_CHECK_LOGIN, showToast: false, autoLogin: false }).then((res) => {
-    //   if (res) {
-        this.setState({ loaded: true })
-        cart.dispatchCart()
-        cart.dispatchCartNum()
-        home.dispatchRecommend()
-      // } else {
-      //   this.setState({ loaded: true, login: false })
-      // }
-    // })
+
+    this.setState({ loaded: true })
+    cart.dispatchCart()
+    cart.dispatchCartNum()
+    home.dispatchRecommend()
   }
 
-  toLogin = () => {
-    Taro.navigateTo({
-      url: '/pages/user-login/user-login'
-    })
+  onGetUserInfo({ currentTarget: { userInfo } }) {
+    this.props.user.setUserInfo({ ...userInfo })
   }
+
+  toLogin = () => {}
 
   render () {
-    const { cart: { cartInfo }, app: { enableHideBar } } = this.props
+    const { cart: { cartInfo }, app: { enableHideBar }, user: {userInfo: { login }} } = this.props
     const cartList = [{
       cartItemList: [{
         pic: 'https://ai-call-platform.oss-cn-hangzhou.aliyuncs.com/CompanyWebsite/OfficialWebsite/NewsPicture/news2@2x_1548753493146.jpg',
@@ -65,24 +57,27 @@ class Index extends Taro.PureComponent {
       return <Loading />
     }
 
-    // if (!this.state.login) {
-    //   return (
-    //     <View className='cart cart--not-login'>
-    //       <Empty text='未登陆' />
-    //       <View className='cart__login'>
-    //         <ButtonItem
-    //           type='primary'
-    //           text='登录'
-    //           onClick={this.toLogin}
-    //           compStyle={{
-    //             background: '#b59f7b',
-    //             borderRadius: Taro.pxTransform(4)
-    //           }}
-    //         />
-    //       </View>
-    //     </View>
-    //   )
-    // }
+    if (!login) {
+      return (
+        <View className='cart cart--not-login'>
+          <Empty text='未登陆' />
+          <View className='cart__login'>
+            <Button open-type='getUserInfo' className='user-menu-auth-btn' onGetUserInfo={this.onGetUserInfo}>
+              <Text className='user-menu-auth-btn-txt'>登录</Text>
+            </Button>
+            {/* <ButtonItem
+              type='primary'
+              text='登录'
+              onClick={this.toLogin}
+              compStyle={{
+                background: '#b59f7b',
+                borderRadius: Taro.pxTransform(4)
+              }}
+            /> */}
+          </View>
+        </View>
+      )
+    }
 
     return (
       <View className={'cart page-con ' + (enableHideBar ? '' : 'no-tab-bar')}>

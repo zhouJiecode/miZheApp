@@ -62,9 +62,7 @@ export default class Menu extends Taro.PureComponent {
   }
 
   onGetUserInfo({ currentTarget: { userInfo } }) {
-    const { user } = this.props
-    console.log(arguments)
-    user.setUserInfo({ userInfo })
+    this.props.user.setUserInfo({ ...userInfo })
   }
 
   render () {
