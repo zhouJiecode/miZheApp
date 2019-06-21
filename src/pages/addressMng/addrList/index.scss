@@ -1,0 +1,49 @@
+@import "src/styles/theme.scss";
+
+.addr-list {
+  &-item {
+    padding: 10px 0 40px $page-padding;
+    position: relative;
+    &::after {
+      content: '';
+      height: 1px;
+      transform: scaleY(.5);
+      background: $color-after-line;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+    &-con {
+      &-name {
+        color: $color-black-0;
+        font-size: 28px;
+        line-height: 28px;
+        font-weight: bold;
+      }
+      &-phone {
+        color: $color-black-0;
+        font-size: 28px;
+        line-height: 28px;
+        margin-left: 100px;
+      }
+      &-tags {
+        display: inline-block;
+        margin-left: 20px;
+      }
+    }
+    &-addr {
+      margin-top: 20px;
+      font-size: 24px;
+      color: $color-black-0;
+      padding-right: $page-padding;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      &-text {
+        flex: 580px 0 0;
+        white-space: normal;
+      }
+    }
+  }
+}

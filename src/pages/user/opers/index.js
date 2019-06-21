@@ -49,9 +49,8 @@ export default class Menu extends Taro.PureComponent {
   }
 
   setAddr() {
-    Taro.showToast({
-      title: '设置地址页尚未实现~',
-      icon: 'none'
+    Taro.navigateTo({
+      url: `/pages/addressMng/index`
     })
   }
 
@@ -107,7 +106,6 @@ export default class Menu extends Taro.PureComponent {
 
         <AtList hasBorder={false} className='user-menu-block mt10 pr24'>
           <AtListItem
-            // thumb='https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png'
             iconInfo={{
               value: 'map-pin',
               color: '#E6D1A2',

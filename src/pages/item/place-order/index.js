@@ -10,13 +10,13 @@ export default class InfoParam extends Taro.PureComponent {
 
   state = {
     interval: null,
-    hour: '48',
-    minute: '23',
+    hour: '00',
+    minute: '01',
     second: '09'
   }
 
   componentDidMount() {
-    const interval = window.setInterval(() => {
+    const interval = setInterval(() => {
       const { hour, minute, second } = this.state
       const rs = timeReduceOneSecond(hour, minute, second)
       this.setState({
@@ -31,7 +31,7 @@ export default class InfoParam extends Taro.PureComponent {
   componentWillUnmount () {
     const { interval } = this.state
     if (interval) {
-      window.clearInterval(interval)
+      clearInterval(interval)
       this.setState({ interval: null })
     }
   }

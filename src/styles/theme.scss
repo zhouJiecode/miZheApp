@@ -1,5 +1,7 @@
 @import "./mixins.scss";
 
+$page-padding: 24px;
+
 $disabled-color: #dddddd;
 
 $yellow: #E6D1A2;
@@ -64,6 +66,7 @@ $color-bg-grey: #F7F7F7 !default;
 
 /* 边框颜色 */
 $color-border-base: #C5D9E8 !default;
+$color-after-line: #d6e4ef;
 $color-border-split: tint($color-border-base, 20%) !default; // 分割线
 $color-border-light: tint($color-border-base, 30%) !default;
 $color-border-lighter: tint($color-border-base, 50%) !default;

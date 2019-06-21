@@ -1,0 +1,71 @@
+@import "src/styles/theme.scss";
+
+.addr {
+  position: relative;
+  height: 100%;
+  background: #fff;
+  &__wrap {
+    padding: 0 0 76px;
+    overflow: auto;
+    background: #fff;
+    &_addperson {
+      width: 46px !important;
+      height: 46px !important;
+    }
+  }
+  &-savebtn {
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    bottom: 20px;
+    width: 540px;
+    height: 74px;
+    border-radius: 32px;
+    border: none;
+    line-height: 74px;
+    text-align: center;
+  }
+}
+
+.home__loading {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+
+  &-txt {
+    color: $color-grey-1;
+    font-size: 24px;
+  }
+}
+
+.at-input__children-con {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  font-size: 24px;
+  padding-right: $page-padding;
+  &.block {
+    display: flex;
+  }
+}
+
+.at-input__container {
+  &.block {
+    display: block;
+  }
+}
+
+.add-tag {
+  min-width: 128px;
+  border: 1px solid $color-after-line;
+  height: 64px;
+  line-height: 60px;
+  border-radius: 32px;
+  color: $color-text-base;
+  background-color:#fff !important;
+
+}

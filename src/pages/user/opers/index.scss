@@ -1,6 +1,5 @@
 @import "src/styles/theme.scss";
 $bg: #fff;
-$page-padding: 24px;
 
 .user-menu {
   background: transparent;
@@ -75,12 +74,12 @@ $page-padding: 24px;
     color: $color-error;
     font-size: 34px;
     line-height:60px;
-    // border-bottom: 2px solid #E4EDF4;
     overflow: hidden;
     &::after {
       content: '';
-      height: 2px;
-      background: #e4edf4;
+      height: 1px;
+      transform: scaleY(.5);
+      background: $color-after-line;
       position: absolute;
       left: -24px;
       right: -24px;

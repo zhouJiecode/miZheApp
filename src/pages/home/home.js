@@ -32,16 +32,6 @@ class Index extends Taro.PureComponent {
     this.loadRecommend()
   }
 
-  componentWillMount () { }
-
-  componentWillReact () { }
-
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
-
   loadRecommend = () => {
     const { home } = this.props
     if (!this.state.hasMore || this.state.loading) {

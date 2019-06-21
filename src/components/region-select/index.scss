@@ -1,0 +1,127 @@
+@import "src/styles/theme.scss";
+
+.free-dialog {
+  position:relative;
+  z-index:1000;
+  &__mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    display: block;
+    transition: all 0.4s ease;
+  }
+  &__container {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: #F1F1F1;
+    transform: translateY(100%);
+    transition: all 0.4s ease;
+    z-index: 11;
+    &__header {
+      position: relative;
+      padding: 24px 30px;
+      text-align: center;
+      background: $color-white;
+      color: $color-grey-2;
+      font-size: 28px;
+      &::after {
+        content: '';
+        height: 1px;
+        transform: scaleY(.5);
+        background: $color-after-line;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+      .close {
+        position:absolute;
+        right: 30px;
+        top: 24px;
+        width: 40px;
+        height: 40px;
+      }
+    }
+    &__content {
+      .free-content {
+        background: $color-white;
+        border-bottom: 40px solid $color-white;
+        .ipx {
+          border-bottom: 72px solid $color-white;
+        }
+        &__tabs {
+          position: relative;
+          padding-left: 40px;
+          &::after {
+            content: '';
+            height: 1px;
+            transform: scaleY(.5);
+            background: $color-after-line;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+          }
+          &__tab {
+            position: relative;
+            display: inline-block;
+            padding: 0 6px;
+            line-height: 80px;
+            font-size: 24px;
+            color: $color-text-base;
+            &::after {
+              content: '';
+              height: 8px;
+              background: transparent;
+              position: absolute;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              z-index: 100;
+            }
+            &.select {
+              &::after {
+                background: $color-error;
+              }
+              color: $color-error;
+            }
+            & + .free-content__tabs__tab {
+              margin-left: 40px;
+            }
+          }
+        }
+        &__scroll {
+          padding: 0 40px;
+          height: 780px;
+          box-sizing: border-box;
+          &__item {
+            height: 80px;
+            line-height: 80px;
+            font-size: 24px;
+            color: $color-text-base;
+          }
+        }
+      }
+    }
+  }
+  &--show {
+    .free-dialog__container {
+      transform: translateY(0);
+    }
+    .free-dialog__mask {
+      opacity: 1;
+    }
+  }
+  &.hide {
+    .free-dialog__mask {
+      display: none;
+    }
+  }
+}

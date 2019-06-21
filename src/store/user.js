@@ -1,50 +1,25 @@
 import { USER_LOGOUT } from '@constants/user'
 import { API_USER, API_USER_LOGIN } from '@constants/api'
-// import { createAction } from '@utils/redux'
-
-// /**
-//  * 获取用户信息
-//  * @param {*} payload
-//  */
-// export const dispatchUser = payload => createAction({
-//   url: API_USER,
-//   fetchOptions: {
-//     showToast: false,
-//     autoLogin: false
-//   },
-//   type: USER_INFO,
-//   payload
-// })
-
-// /**
-//  * 用户登录
-//  * @param {*} payload
-//  */
-// export const dispatchLogin = payload => createAction({
-//   url: API_USER_LOGIN,
-//   type: USER_LOGIN,
-//   payload
-// })
-
-// /**
-//  * 用户退出登录
-//  */
-// export const dispatchLogout = () => ({ type: USER_LOGOUT })
-
 import { observable } from 'mobx'
 import fetch from '@utils/request'
 
 const homeStore = observable({
+  // 用户微信个人信息
   userInfo: {
     login: true,
-    avatarUrl: "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLzQ47l2RKcDfyJ96Lfs2JyuDvy7W7Pqx8ulNpnQeGAtEotOTdWHCYHkibjZ3tuKV6O4bxEsGh9D4g/132",
-    city: "Nanjing",
-    country: "China",
+    avatarUrl: '',
+    city: '',
+    country: '',
     gender: 1,
-    language: "zh_CN",
-    nickName: "周杰",
-    province: "Jiangsu",
+    language: '',
+    nickName: '',
+    province: ''
   },
+
+  // 收货地址
+  addrList: [],
+
+  // 设置用户信息
   setUserInfo({ avatarUrl, city, country, gender, nickName, province }) {
     this.userInfo.nickName = nickName || ''
     this.userInfo.avatarUrl = avatarUrl || ''
@@ -53,15 +28,46 @@ const homeStore = observable({
     this.userInfo.gender = gender || ''
     this.userInfo.province = province || ''
   },
+
+  // 获取用户收货地址列表
+  async getUserAddrList() {
+    // todo: 调用接口获取地址列表
+    this.addrList = [{
+      id: 1,
+      userName: '周杰',
+      phoneNumber: '158****1653',
+      addr: '浙江省杭州市西湖区三潭映月xx号',
+      isDefault: true,
+      tag: ''
+    }, {
+      id: 2,
+      userName: '周杰',
+      phoneNumber: '158****1653',
+      addr: '浙江省杭州市西湖区三潭映月xx号',
+      isDefault: false,
+      tag: '家'
+    }, {
+      id: 3,
+      userName: '周杰',
+      phoneNumber: '158****1653',
+      addr: '浙江省杭州市西湖区三潭映月xx号',
+      isDefault: false,
+      tag: '公司'
+    }, {
+      id: 3,
+      userName: '周杰',
+      phoneNumber: '158****1653',
+      addr: '浙江省杭州市西湖区三潭映月xx号',
+      isDefault: false,
+      tag: ''
+    }]
+  },
+
   async dispatchUser(payload) {
     await fetch({ url: API_USER, payload, method: undefined, fetchOptions: {
       showToast: false,
       autoLogin: false
     } })
-    // this.userInfo = {
-    //   ...action.payload,
-    //   login: true
-    // }
   },
   async dispatchLogin(payload) {
     await fetch({ url: API_USER_LOGIN, payload, method: undefined })
