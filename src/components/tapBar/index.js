@@ -5,6 +5,7 @@ import AtTabBar from '../tab-bar'
 import './index.scss'
 
 @inject('tabbar')
+@inject('app')
 @observer
 export default class TapBar extends Taro.PureComponent {
 
@@ -36,7 +37,11 @@ export default class TapBar extends Taro.PureComponent {
   }
 
   render () {
-    const { tabbar: { activeTab } } = this.props
+    const { tabbar: { activeTab }, app: { enableHideBar } } = this.props
+
+    if(!enableHideBar) {
+      return
+    }
 
     return (
       <AtTabBar

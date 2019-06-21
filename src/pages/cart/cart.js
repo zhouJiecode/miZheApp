@@ -9,6 +9,7 @@ import './cart.scss'
 
 @inject('home')
 @inject('cart')
+@inject('app')
 @observer
 class Index extends Taro.PureComponent {
   config = {
@@ -20,7 +21,7 @@ class Index extends Taro.PureComponent {
   }
 
   componentWillMount () {
-    Taro.hideTabBar()
+    // Taro.hideTabBar()
   }
 
   componentDidShow() {
@@ -44,7 +45,7 @@ class Index extends Taro.PureComponent {
   }
 
   render () {
-    const { cart: { cartInfo } } = this.props
+    const { cart: { cartInfo }, app: { enableHideBar } } = this.props
     const cartList = [{
       cartItemList: [{
         pic: 'https://ai-call-platform.oss-cn-hangzhou.aliyuncs.com/CompanyWebsite/OfficialWebsite/NewsPicture/news2@2x_1548753493146.jpg',
@@ -84,7 +85,7 @@ class Index extends Taro.PureComponent {
     // }
 
     return (
-      <View className='cart page-con'>
+      <View className={'cart page-con ' + (enableHideBar ? '' : 'no-tab-bar')}>
         <ScrollView
           scrollY
           className='cart__wrap'

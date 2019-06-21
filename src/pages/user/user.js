@@ -10,6 +10,7 @@ import './user.scss'
 
 @inject('user')
 @inject('cart')
+@inject('app')
 @observer
 class User extends Taro.PureComponent {
   config = {
@@ -30,10 +31,10 @@ class User extends Taro.PureComponent {
   }
 
   render () {
-    const { user } = this.props
+    const { user, app: { enableHideBar } } = this.props
 
     return (
-      <View className='user page-con'>
+      <View className={'user page-con ' + (enableHideBar ? '' : 'no-tab-bar')}>
         <ScrollView
           scrollY
           className='user__wrap'

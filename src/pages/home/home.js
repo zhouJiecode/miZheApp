@@ -10,6 +10,7 @@ const RECOMMEND_SIZE = 20
 
 @inject('home')
 @inject('cart')
+@inject('app')
 @observer
 class Index extends Taro.PureComponent {
 
@@ -53,9 +54,10 @@ class Index extends Taro.PureComponent {
       return <Loading />
     }
 
-    const { home: { recommend } } = this.props
+    const { home: { recommend }, app: { enableHideBar } } = this.props
+    console.log(enableHideBar)
     return (
-      <View className='home page-con'>
+      <View className={'home page-con ' + (enableHideBar ? '' : 'no-tab-bar')}>
         <ScrollView
           scrollY
           className='home__wrap'

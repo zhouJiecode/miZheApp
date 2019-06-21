@@ -1,20 +1,15 @@
 import Taro from '@tarojs/taro'
-import { Provider } from '@tarojs/mobx'
+import { Provider, observer, inject } from '@tarojs/mobx'
 import '@tarojs/async-await'
 import 'taro-ui/dist/style/index.scss'
 
+import { compareVersion } from './utils'
 import Index from './pages/index'
 import store from './store'
 import './app.scss'
 
-// 如果需要在 h5 环境中开启 React Devtools
-// 取消以下注释：
-// if (process.env.NODE_ENV !== 'production' && process.env.TARO_ENV === 'h5')  {
-//   require('nerv-devtools')
-// }
-// console.log(Taro.getCurrentPages())
-// console.log(this.$router)
-
+@inject('app')
+@observer
 class App extends Taro.PureComponent {
 
   config = {
@@ -61,6 +56,16 @@ class App extends Taro.PureComponent {
   }
 
   componentWillMount() {
+    const version = Taro.getSystemInfoSync().SDKVersion
+
+    // hideTabBar接口只支持微信基础库1.9.0及以上版本
+    if (compareVersion(version, '1.9.0') < 0) {
+      this.props.app.setEnableHideBar(false)
+    } else {
+      // 隐藏微信原生底部栏
+      Taro.hideTabBar()
+    }
+
     if (Taro.canIUse('getUpdateManager')) {
       const updateManager = Taro.getUpdateManager()
       updateManager.onCheckForUpdate(function (res) {
@@ -110,7 +115,5 @@ class App extends Taro.PureComponent {
     )
   }
 }
-
-Taro.hideTabBar()
 
 Taro.render(<App />, document.getElementById('app'))
