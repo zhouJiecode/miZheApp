@@ -24,11 +24,7 @@ class Index extends Taro.PureComponent {
   }
 
   async componentDidMount() {
-    const { home } = this.props
-
-    await home.dispatchHome().then(() => {
-      this.setState({ loaded: true })
-    })
+    this.setState({ loaded: true })
     this.loadRecommend()
   }
 
