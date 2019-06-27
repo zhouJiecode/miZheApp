@@ -1,4 +1,4 @@
-import fetch from '@utils/request'
+// import fetch from '@utils/request'
 import { observable } from 'mobx'
 import orders from '../mock/orders'
 

@@ -3,7 +3,7 @@ import { View, Text, Image, Button, Input } from '@tarojs/components'
 import { AtList, AtListItem, AtIcon } from 'taro-ui'
 import { observer, inject } from '@tarojs/mobx'
 import { AtModal } from '@components'
-import { ALL, PAYING, SHIPPING, SHIPED } from '@constants/orders'
+import { PAYING, SHIPPING, SHIPED } from '@constants/orders'
 import './index.scss'
 
 import payingPng from '../static/img/paying.png'

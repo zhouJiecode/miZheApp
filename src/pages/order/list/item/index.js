@@ -32,7 +32,7 @@ export default class List extends Taro.PureComponent {
         <View className='order-list__item-header'>
           <Text className='order-list__item-header-orderId'>订单编号：{order.id}</Text>
           <Button className='order-list__item-header-del' onClick={this.delOrder.bind(this)}>
-            <AtIcon className='mt-3' value='trash' size='12' color='#333'></AtIcon>
+            <AtIcon className='mt-3' customStyle='margin-top: -2px;' value='trash' size='12' color='#333'></AtIcon>
           </Button>
         </View>
 

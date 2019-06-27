@@ -36,10 +36,6 @@ export default class List extends Taro.PureComponent {
     this.props.onUpdateCheck(payload)
   }
 
-  handleRemove = () => {
-    // XXX 暂未实现左滑删除
-  }
-
   render () {
     const { list } = this.props
     return (
@@ -87,10 +83,6 @@ export default class List extends Taro.PureComponent {
                     value={item.cnt}
                     onChange={this.handleUpdate.bind(this, item)}
                   />
-                  {/* <InputNumber
-                    num={item.cnt}
-                    onChange={this.handleUpdate.bind(this, item)}
-                  /> */}
                 </View>
               </View>
             </View>

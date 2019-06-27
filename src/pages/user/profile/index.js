@@ -15,7 +15,7 @@ export default class Profile extends Component {
   }
 
   render () {
-    const { userInfo } = this.props
+    const { userInfo: { avatarUrl, nickName, login } } = this.props
 
     return (
       <View className='user-profile'>
@@ -23,13 +23,13 @@ export default class Profile extends Component {
           <View className='user-profile__avatar'>
             <Image
               className='user-profile__avatar-img'
-              src={userInfo.avatarUrl || defaultAvatar}
+              src={avatarUrl || defaultAvatar}
             />
           </View>
 
           <View className='user-profile__info'>
             <Text className='user-profile__info-name'>
-              {userInfo.login ? userInfo.nickName : '未登录'}
+              {login ? nickName : '未登录'}
             </Text>
             {
               <View className='user-profile__info-tip'>

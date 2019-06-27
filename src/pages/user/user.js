@@ -28,6 +28,8 @@ class User extends Taro.PureComponent {
 
   render () {
     const { user: { userInfo }, app: { enableHideBar } } = this.props
+    // fixbug: 这里必须使用一次userInfo内部的变量，否则userInfo内部变量更新时，这里不会同步更新
+    userInfo.nickName
 
     return (
       <View className={'user page-con ' + (enableHideBar ? '' : 'no-tab-bar')}>
@@ -37,13 +39,6 @@ class User extends Taro.PureComponent {
         >
           <Profile userInfo={userInfo} />
           <Opers></Opers>
-          {/*
-          {userInfo.login &&
-            <View className='user__logout' onClick={this.handleLogin}>
-              <Text className='user__logout-txt'>切换账号</Text>
-            </View>
-          }
-          <View className='user__empty' /> */}
         </ScrollView>
         {/* <View className='user__activity'>
           <Activity />
