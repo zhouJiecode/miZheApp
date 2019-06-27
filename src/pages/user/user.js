@@ -37,7 +37,7 @@ class User extends Taro.PureComponent {
         >
           <Profile userInfo={userInfo} />
           <Opers></Opers>
-          {/* <Menu />
+          {/*
           {userInfo.login &&
             <View className='user__logout' onClick={this.handleLogin}>
               <Text className='user__logout-txt'>切换账号</Text>

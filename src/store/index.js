@@ -4,6 +4,7 @@ import user from './user'
 import item from './item'
 import tabbar from './tabbar'
 import app from './app'
+import orders from './orders'
 
 export default {
   home,
@@ -11,5 +12,6 @@ export default {
   user,
   item,
   tabbar,
-  app
+  app,
+  orders
 }

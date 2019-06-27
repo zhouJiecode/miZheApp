@@ -3,6 +3,7 @@ import { View, Text, Image, Button, Input } from '@tarojs/components'
 import { AtList, AtListItem, AtIcon } from 'taro-ui'
 import { observer, inject } from '@tarojs/mobx'
 import { AtModal } from '@components'
+import { ALL, PAYING, SHIPPING, SHIPED } from '@constants/orders'
 import './index.scss'
 
 import payingPng from '../static/img/paying.png'
@@ -22,10 +23,9 @@ export default class Menu extends Taro.PureComponent {
     this.setState({ money: e.detail.value || undefined })
   }
 
-  gotoOrders() {
-    Taro.showToast({
-      title: '订单页尚未实现~',
-      icon: 'none'
+  gotoOrders(type) {
+    Taro.navigateTo({
+      url: `/pages/order/index?type=${type}`
     })
   }
 
@@ -73,15 +73,15 @@ export default class Menu extends Taro.PureComponent {
         </AtList>
 
         <View className='at-row user-menu-block mt10'>
-          <View className='at-col flex-column'>
+          <View className='at-col flex-column' onClick={() => this.gotoOrders(PAYING)}>
             <Image className='paying__img img-icon' src={payingPng} />
             <Text className='at-row-txt'>待付款</Text>
           </View>
-          <View className='at-col flex-column'>
+          <View className='at-col flex-column' onClick={() => this.gotoOrders(SHIPPING)}>
             <Image className='shipping__img img-icon' src={shippingPng} />
             <Text className='at-row-txt'>待发货</Text>
           </View>
-          <View className='at-col flex-column'>
+          <View className='at-col flex-column' onClick={() => this.gotoOrders(SHIPED)}>
             <Image className='shiped__img img-icon' src={shipedPng} />
             <Text className='at-row-txt'>已发货</Text>
           </View>
@@ -119,6 +119,7 @@ export default class Menu extends Taro.PureComponent {
             hasBorder={false}
           />
         </AtList>
+
         <View className='user-menu-block mt15 user-menu-auth'>
           <Button open-type='getUserInfo' className='user-menu-auth-btn' onGetUserInfo={this.onGetUserInfo}>
             <Text className='user-menu-auth-btn-txt'>重新授权</Text>

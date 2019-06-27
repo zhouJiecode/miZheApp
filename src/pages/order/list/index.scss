@@ -1,0 +1,23 @@
+@import "src/styles/theme.scss";
+
+.cart {
+  position: relative;
+  background: #f4f4f4;
+
+  &--not-login {
+    background: #ffffff;
+  }
+}
+
+.cart__recommend {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  &-txt {
+    color: $color-black-0;
+    font-size: 28px;
+    line-height: 28px;
+    font-weight: bold;
+  }
+}

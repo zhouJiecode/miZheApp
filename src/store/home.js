@@ -1,4 +1,4 @@
-import {observable} from "mobx"
+import { observable } from "mobx"
 import fetch from "@utils/request"
 import listData from '../mock/list'
 

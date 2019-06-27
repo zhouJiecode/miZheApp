@@ -19,7 +19,8 @@ class App extends Taro.PureComponent {
       'pages/cart/cart',
       'pages/webview/webview',
       'pages/item/item',
-      'pages/addressMng/index'
+      'pages/addressMng/index',
+      'pages/order/index'
     ],
     window: {
       backgroundTextStyle: 'light',

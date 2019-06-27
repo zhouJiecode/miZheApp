@@ -1,5 +1,5 @@
 import { USER_LOGOUT } from '@constants/user'
-import { API_USER, API_USER_LOGIN } from '@constants/api'
+import { API_USER } from '@constants/api'
 import { observable } from 'mobx'
 import fetch from '@utils/request'
 import userAddrList from '../mock/userAddr'
