@@ -2,7 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import { AtIcon } from 'taro-ui'
 import defaultAvatar from '@assets/default-avatar.png'
-import qrCode from './assets/qr-code.png'
+import QrCode from './qrCode'
 import './index.scss'
 
 export default class Profile extends Component {
@@ -39,12 +39,8 @@ export default class Profile extends Component {
             }
           </View>
 
-          <View className='user-profile__extra'>
-            <Image
-              className='user-profile__extra-img'
-              src={qrCode}
-            />
-          </View>
+          {/* 生成二维码海报 */}
+          <QrCode />
 
           {/* <Vip /> */}
         </View>

@@ -82,25 +82,3 @@ $avatarSize: 140px;
     }
   }
 }
-
-.user-profile__extra {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  align-self: flex-start;
-  position: absolute;
-  top: 50%;
-  right: 20px;
-  margin-top: -60px;
-  margin-left: 18px;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background: $color-round-shadow;
-
-  &-img {
-    width: 50px;
-    height: 50px;
-  }
-}
