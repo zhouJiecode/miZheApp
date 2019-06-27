@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
-import empty from './assets/empty.png'
+import empty from '@assets/empty.png'
 import './index.scss'
 
 export default class Empty extends Taro.PureComponent {

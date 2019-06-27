@@ -1,14 +1,14 @@
 import Taro from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
-import { TapBar } from '@components'
+import { TapBar, Login } from '@components'
 import { observer, inject } from '@tarojs/mobx'
 import Profile from './profile'
 import Opers from './opers'
 import './user.scss'
 
-@inject('user')
 @inject('cart')
 @inject('app')
+@inject('user')
 @observer
 class User extends Taro.PureComponent {
   config = {
@@ -20,9 +20,8 @@ class User extends Taro.PureComponent {
   }
 
   componentDidShow() {
-    const { user, cart } = this.props
+    const { cart } = this.props
 
-    user.dispatchUser()
     cart.dispatchCartNum()
   }
 
@@ -33,13 +32,20 @@ class User extends Taro.PureComponent {
 
     return (
       <View className={'user page-con ' + (enableHideBar ? '' : 'no-tab-bar')}>
-        <ScrollView
-          scrollY
-          className='user__wrap'
-        >
-          <Profile userInfo={userInfo} />
-          <Opers></Opers>
-        </ScrollView>
+        {!userInfo.login &&
+          <Login />
+        }
+
+        {userInfo.login &&
+          <ScrollView
+            scrollY
+            className='user__wrap'
+          >
+            <Profile userInfo={userInfo} />
+            <Opers></Opers>
+          </ScrollView>
+        }
+
         {/* <View className='user__activity'>
           <Activity />
         </View> */}

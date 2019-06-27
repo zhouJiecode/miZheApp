@@ -1,7 +1,5 @@
-import { USER_LOGOUT } from '@constants/user'
-import { API_USER } from '@constants/api'
 import { observable } from 'mobx'
-import fetch from '@utils/request'
+// import fetch from '@utils/request'
 import userAddrList from '../mock/userAddr'
 
 const homeStore = observable({
@@ -35,14 +33,6 @@ const homeStore = observable({
   async getUserAddrList() {
     // todo: 调用接口获取地址列表
     this.addrList = userAddrList
-  },
-
-  async dispatchUser(payload) {
-    await fetch({ url: API_USER, payload, method: undefined, fetchOptions: {
-      showToast: false,
-      autoLogin: false
-    } })
-  },
-  dispatchLogout: () => ({ type: USER_LOGOUT })
+  }
 })
 export default homeStore
