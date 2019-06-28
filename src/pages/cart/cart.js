@@ -1,8 +1,8 @@
 import Taro from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
-import { Loading, TapBar, Login, Empty } from '@components'
+import { Loading, TapBar, Empty } from '@components'
+import { WithLogin } from '@HOC'
 import { observer, inject } from '@tarojs/mobx'
-import emptyCartPng from '@assets/empty.png'
 import List from './list'
 import Footer from './footer'
 import './cart.scss'
@@ -32,7 +32,7 @@ class Index extends Taro.PureComponent {
   }
 
   render () {
-    const { cart: { cartInfo }, app: { enableHideBar }, user: { userInfo } } = this.props
+    const { cart: { cartInfo }, app: { enableHideBar } } = this.props
     const cartList = [{
       cartItemList: [{
         pic: 'https://ai-call-platform.oss-cn-hangzhou.aliyuncs.com/CompanyWebsite/OfficialWebsite/NewsPicture/news2@2x_1548753493146.jpg',
@@ -53,12 +53,8 @@ class Index extends Taro.PureComponent {
     }
 
     return (
-      <View className={'cart page-con ' + (enableHideBar ? '' : 'no-tab-bar')}>
-        {!userInfo.login &&
-          <Login object='购物车' imgSrc={emptyCartPng} />
-        }
-
-        {userInfo.login &&
+      <WithLogin>
+        <View className={'cart page-con ' + (enableHideBar ? '' : 'no-tab-bar')}>
           <ScrollView
             scrollY
             className='cart__wrap'
@@ -80,18 +76,18 @@ class Index extends Taro.PureComponent {
               <View className='cart__footer--placeholder' />
             }
           </ScrollView>
-        }
 
-        {userInfo.login && isShowFooter &&
-          <View className='cart__footer'>
-            <Footer
-              cartInfo={cartInfo}
-              onUpdateCheck={this.props.dispatchUpdateCheck}
-            />
-          </View>
-        }
-        <TapBar></TapBar>
-      </View>
+          {isShowFooter &&
+            <View className='cart__footer'>
+              <Footer
+                cartInfo={cartInfo}
+                onUpdateCheck={this.props.dispatchUpdateCheck}
+              />
+            </View>
+          }
+          <TapBar></TapBar>
+        </View>
+      </WithLogin>
     )
   }
 }

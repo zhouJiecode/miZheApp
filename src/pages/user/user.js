@@ -1,6 +1,7 @@
 import Taro from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
-import { TapBar, Login } from '@components'
+import { TapBar } from '@components'
+import { WithLogin } from '@HOC'
 import { observer, inject } from '@tarojs/mobx'
 import Profile from './profile'
 import Opers from './opers'
@@ -31,12 +32,8 @@ class User extends Taro.PureComponent {
     userInfo.nickName
 
     return (
-      <View className={'user page-con ' + (enableHideBar ? '' : 'no-tab-bar')}>
-        {!userInfo.login &&
-          <Login />
-        }
-
-        {userInfo.login &&
+      <WithLogin>
+        <View className={'user page-con ' + (enableHideBar ? '' : 'no-tab-bar')}>
           <ScrollView
             scrollY
             className='user__wrap'
@@ -44,13 +41,13 @@ class User extends Taro.PureComponent {
             <Profile userInfo={userInfo} />
             <Opers></Opers>
           </ScrollView>
-        }
 
-        {/* <View className='user__activity'>
-          <Activity />
-        </View> */}
-        <TapBar></TapBar>
-      </View>
+          {/* <View className='user__activity'>
+            <Activity />
+          </View> */}
+          <TapBar></TapBar>
+        </View>
+      </WithLogin>
     )
   }
 }
