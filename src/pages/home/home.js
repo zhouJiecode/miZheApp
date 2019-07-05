@@ -27,6 +27,9 @@ class Index extends Taro.PureComponent {
   async componentDidMount() {
     this.setState({ loaded: true })
     this.loadRecommend()
+    setTimeout(() => {
+      this.getWindowInfo()
+    }, 1000)
   }
 
   loadRecommend = () => {
@@ -47,6 +50,22 @@ class Index extends Taro.PureComponent {
     }).catch(() => {
       this.setState({ loading: false })
     })
+  }
+
+  getWindowInfo() {
+    const { app } = this.props
+    const query = Taro.createSelectorQuery().in(this.$scope)
+
+    query.select('#qrMask').boundingClientRect(rect => {
+      if (rect && rect.height) {
+        app.setClientH(rect.height)
+        app.setClientW(rect.width)
+      } else {
+        setTimeout(() => {
+          this.getWindowInfo()
+        }, 1000)
+      }
+    }).exec()
   }
 
   render () {
@@ -76,6 +95,8 @@ class Index extends Taro.PureComponent {
           }
         </ScrollView>
         <TapBar></TapBar>
+
+        <View className='get-screen-info' id='qrMask'></View>
       </View>
     )
   }

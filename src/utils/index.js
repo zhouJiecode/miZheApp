@@ -1,3 +1,5 @@
+import Taro from '@tarojs/taro'
+
 export const timeReduceOneSecond = (hour, minute, second) => {
   let mngSed = (parseInt(second, 10) || 0) - 1
   let mngMnt = (parseInt(minute, 10) || 0) - 1
@@ -28,6 +30,7 @@ export const timeReduceOneSecond = (hour, minute, second) => {
   }
 }
 
+// 比较两个微信版本号的大小
 export const compareVersion = (v1, v2) => {
   v1 = v1.split('.')
   v2 = v2.split('.')
@@ -52,4 +55,23 @@ export const compareVersion = (v1, v2) => {
   }
 
   return 0
+}
+
+// 下载文件，返回二进制数据
+export const downLoadFile = url => {
+  return new Promise((resolve, reject) => {
+    Taro.downloadFile({
+      url,
+      success(res) {
+        if (res.statusCode === 200) {
+          resolve(res.tempFilePath)
+        } else {
+          reject('下载失败code：'+res.statusCode)
+        }
+      },
+      fail() {
+        reject('下载失败，网络异常')
+      }
+    })
+  })
 }

@@ -7,7 +7,6 @@ import Profile from './profile'
 import Opers from './opers'
 import './user.scss'
 
-@inject('cart')
 @inject('app')
 @inject('user')
 @observer
@@ -18,12 +17,6 @@ class User extends Taro.PureComponent {
 
   constructor(props) {
     super(props)
-  }
-
-  componentDidShow() {
-    const { cart } = this.props
-
-    cart.dispatchCartNum()
   }
 
   render () {

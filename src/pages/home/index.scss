@@ -20,3 +20,11 @@
     font-size: 24px;
   }
 }
+
+.get-screen-info {
+  position: fixed;
+  width: 100%;
+  left: -9999px;
+  top: 0;
+  bottom: 0;
+}

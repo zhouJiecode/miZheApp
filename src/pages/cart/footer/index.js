@@ -5,32 +5,22 @@ import './index.scss'
 
 export default class Footer extends Taro.PureComponent {
   static defaultProps = {
-    cartInfo: {},
-    onToggle: () => {}
+    selectedCount: 0,
+    cartList: [],
+    onUpdateCheck: () => {}
   }
 
   handleUpdateCheck = () => {
-    const { cartInfo } = this.props
-    const { cartGroupList = [], countCornerMark, selectedCount } = cartInfo
-    const cartList = cartGroupList.slice(1)
-    const payload = { skuList: [] }
-    const isAllChecked = !!selectedCount && parseInt(countCornerMark) === selectedCount
-    const nextChecked = !isAllChecked
-    cartList.forEach((group) => {
-      group.cartItemList.forEach((item) => {
-        payload.skuList.push({
-          skuId: item.skuId,
-          type: item.type,
-          extId: item.extId,
-          cnt: item.cnt,
-          checked: nextChecked,
-          canCheck: true,
-          promId: group.promId,
-          promType: group.promType
-        })
-      })
-    })
-    this.props.onUpdateCheck(payload)
+    const { cartList, selectedCount, onUpdateCheck } = this.props
+    const selectAll = selectedCount === cartList.length && selectedCount
+    const allIds = this.cartList.map(item => item.id)
+
+    const params = {
+      checkedList: selectAll ? [] : allIds,
+      notCheckedList: selectAll ? allIds : []
+    }
+
+    onUpdateCheck(params)
   }
 
   handleOrder = () => {
@@ -41,22 +31,25 @@ export default class Footer extends Taro.PureComponent {
   }
 
   render () {
-    const { cartInfo } = this.props
+    const { cartList, selectedCount } = this.props
+    const selectAll = selectedCount === cartList.length && selectedCount
+    const actualPrice = cartList.reduce((pre, cur) => pre + cur.actualPrice, 0)
+
     return (
       <View className='cart-footer'>
         <View className='cart-footer__select'>
           <CheckboxItem
-            checked={!!cartInfo.selectedCount}
+            checked={selectAll}
             onClick={this.handleUpdateCheck}
           >
             <Text className='cart-footer__select-txt'>
-              {!cartInfo.selectedCount ? '全选' : `已选(${cartInfo.selectedCount})`}
+              {selectAll ? '全选' : `已选(${selectedCount})`}
             </Text>
           </CheckboxItem>
         </View>
         <View className='cart-footer__amount'>
           <Text className='cart-footer__amount-txt'>
-            ¥{parseFloat(cartInfo.actualPrice).toFixed(2)}
+            ¥{parseFloat(actualPrice).toFixed(2)}
           </Text>
         </View>
         <View className='cart-footer__btn'>

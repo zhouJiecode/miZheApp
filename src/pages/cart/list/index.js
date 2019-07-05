@@ -23,17 +23,17 @@ export default class List extends Taro.PureComponent {
   })
 
   handleUpdate = (item, cnt) => {
-    const payload = {
-      skuList: [{ ...this.getBaseItem(item), cnt }]
-    }
-    this.props.onUpdate(payload)
+    this.props.onUpdate({
+      id: item.id,
+      cnt: cnt
+    })
   }
 
   handleUpdateCheck = (item) => {
-    const payload = {
-      skuList: [{ ...this.getBaseItem(item), checked: !item.checked }]
-    }
-    this.props.onUpdateCheck(payload)
+    this.props.onUpdateCheck({
+      checkedList: item.checked ? [] : item.id,
+      notCheckedList: item.checked ? item.id : []
+    })
   }
 
   render () {
@@ -65,7 +65,7 @@ export default class List extends Taro.PureComponent {
 
               <View className='cart-list__item-spec'>
                 <Text className='cart-list__item-spec-txt'>
-                  {item.specList.map(sepc => sepc.specValue).join(' ')}
+                  {item.specList.join(' ')}
                 </Text>
               </View>
 

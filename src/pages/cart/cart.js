@@ -21,32 +21,30 @@ class Index extends Taro.PureComponent {
   }
 
   componentDidShow() {
-    const { cart } = this.props
+    this.loadCart()
+  }
 
+  async loadCart() {
+    this.setState({ loaded: false })
+    await this.props.cart.dispatchCart()
     this.setState({ loaded: true })
-    cart.dispatchCart()
   }
 
   onGetUserInfo({ currentTarget: { userInfo } }) {
-    this.props.user.setUserInfo({ ...userInfo })
+    this.props.user.setUserInfo(userInfo)
+  }
+
+  dispatchUpdate(params) {
+    this.props.cart.dispatchUpdate(params)
+  }
+
+  dispatchUpdateCheck(params) {
+    this.props.cart.dispatchUpdateCheck(params)
   }
 
   render () {
-    const { cart: { cartInfo }, app: { enableHideBar } } = this.props
-    const cartList = [{
-      cartItemList: [{
-        pic: 'https://ai-call-platform.oss-cn-hangzhou.aliyuncs.com/CompanyWebsite/OfficialWebsite/NewsPicture/news2@2x_1548753493146.jpg',
-        prefix: '呵呵',
-        itemName: 'xx沐浴露',
-        actualPrice: '15',
-        cnt: 1,
-        specList: [],
-        checked: true
-      }]
-    }]
-
+    const { cart: { cartList, selectedCount }, app: { enableHideBar } } = this.props
     const isEmpty = !cartList.length
-    const isShowFooter = !isEmpty
 
     if (!this.state.loaded) {
       return <Loading />
@@ -61,27 +59,25 @@ class Index extends Taro.PureComponent {
           >
             {isEmpty && <Empty />}
 
-            {!isEmpty && cartList.map((group, index) => (
+            {!isEmpty &&
               <List
-                key={index}
-                promId={group.promId}
-                promType={group.promType}
-                list={group.cartItemList}
-                onUpdate={this.props.dispatchUpdate}
-                onUpdateCheck={this.props.dispatchUpdateCheck}
+                list={cartList}
+                onUpdate={this.dispatchUpdate.bind(this)}
+                onUpdateCheck={this.dispatchUpdateCheck.bind(this)}
               />
-            ))}
+            }
 
-            {isShowFooter &&
+            {!isEmpty &&
               <View className='cart__footer--placeholder' />
             }
           </ScrollView>
 
-          {isShowFooter &&
+          {!isEmpty &&
             <View className='cart__footer'>
               <Footer
-                cartInfo={cartInfo}
-                onUpdateCheck={this.props.dispatchUpdateCheck}
+                cartList={cartList}
+                selectedCount={selectedCount}
+                onUpdateCheck={this.dispatchUpdateCheck.bind(this)}
               />
             </View>
           }
