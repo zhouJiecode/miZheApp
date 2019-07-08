@@ -51,6 +51,12 @@ export default class ShareActionSheet extends Taro.PureComponent {
     })
   }
 
+  onError() {
+    this.setState({
+      managing: false
+    })
+  }
+
   onSaved() {
     console.log('onSaved')
     // this.setState({
@@ -86,6 +92,7 @@ export default class ShareActionSheet extends Taro.PureComponent {
           ref={node => this.shareObj = node}
           onPosterShown={this.onPosterShown.bind(this)}
           onSaved={this.onSaved.bind(this)}
+          onError={this.onError.bind(this)}
         />
         <View className='action-sheet-container'>
           <View className='action-sheet-head'>

@@ -14,7 +14,8 @@ export default class Profile extends Component {
     className: '',
     forShareMP: false,
     onPosterShown: () => {},
-    onSaved: () => {}
+    onSaved: () => {},
+    onError: () => {}
   } 
 
   state = {
@@ -42,6 +43,7 @@ export default class Profile extends Component {
     const loop = () => {
       if (totalTimes >= 60000) {
         _clear()
+        this.props.onError()
         return
       }
 
@@ -96,6 +98,7 @@ export default class Profile extends Component {
       title: '加载商品图片失败，请重试~',
       duration: 2000
     })
+    this.props.onError()
   }
 
   // 分享商品时需要加载的图片
@@ -124,6 +127,7 @@ export default class Profile extends Component {
           title: '加载商品图片失败，请重试~',
           duration: 2000
         })
+        this.props.onError()
         reject()
       }
     })
@@ -147,6 +151,7 @@ export default class Profile extends Component {
           title: '加载用户头像失败，请重试~',
           duration: 2000
         })
+        this.props.onError()
         reject()
       }
     })
@@ -173,6 +178,7 @@ export default class Profile extends Component {
           title: '加载小程序码失败，请重试~',
           duration: 2000
         })
+        this.props.onError()
         reject()
       }
     })
