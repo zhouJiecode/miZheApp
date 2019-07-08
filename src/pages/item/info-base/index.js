@@ -1,7 +1,7 @@
 import Taro from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 import { AtIcon } from 'taro-ui'
-import { ActionSheet } from '@components'
+import { ShareActionSheet } from '@components'
 import './index.scss'
 
 export default class InfoBase extends Taro.PureComponent {
@@ -64,7 +64,7 @@ export default class InfoBase extends Taro.PureComponent {
           </View>
         </View>
 
-        <ActionSheet
+        <ShareActionSheet
           visible={actionSheetVisible}
           onClose={this.handleActionSheetClose.bind(this)}
         />

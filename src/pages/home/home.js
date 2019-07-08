@@ -1,6 +1,7 @@
 import Taro from '@tarojs/taro'
 import { View, Text, ScrollView } from '@tarojs/components'
 import { Loading, TapBar } from '@components'
+import shareInfo from '@constants/shareInfo'
 import { observer, inject } from '@tarojs/mobx'
 import Recommend from './recommend'
 
@@ -22,6 +23,10 @@ class Index extends Taro.PureComponent {
     loaded: false,
     loading: false,
     hasMore: true
+  }
+
+  onShareAppMessage() {
+    return shareInfo
   }
 
   async componentDidMount() {

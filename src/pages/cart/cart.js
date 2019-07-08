@@ -2,6 +2,7 @@ import Taro from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
 import { Loading, TapBar, Empty } from '@components'
 import { WithLogin } from '@HOC'
+import shareInfo from '@constants/shareInfo'
 import { observer, inject } from '@tarojs/mobx'
 import List from './list'
 import Footer from './footer'
@@ -18,6 +19,10 @@ class Index extends Taro.PureComponent {
 
   state = {
     loaded: false
+  }
+
+  onShareAppMessage() {
+    return shareInfo
   }
 
   componentDidShow() {

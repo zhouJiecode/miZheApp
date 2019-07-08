@@ -1,6 +1,6 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Image, Button, Canvas } from '@tarojs/components'
-import { AtIcon } from 'taro-ui'
+import { View, Image, Canvas } from '@tarojs/components'
+// import { AtIcon } from 'taro-ui'
 import { downLoadFile } from '@utils'
 import { observer, inject } from '@tarojs/mobx'
 import defaultAvatar from '@assets/default-avatar.png'
@@ -11,7 +11,10 @@ import './index.scss'
 @observer
 export default class Profile extends Component {
   static defaultProps = {
-    className: ''
+    className: '',
+    forShareMP: false,
+    onPosterShown: () => {},
+    onSaved: () => {}
   } 
 
   state = {
@@ -29,8 +32,36 @@ export default class Profile extends Component {
     super(...arguments)
   }
 
-  showPoster(e) {
-    e.stopPropagation()
+  untilImgLoaded(cb) {
+    let timeOut = null
+    let totalTimes = 0
+    const _clear = () => {
+      clearTimeout(timeOut)
+      timeOut = null
+    }
+    const loop = () => {
+      if (totalTimes >= 60000) {
+        _clear()
+        return
+      }
+
+      const { userHeadSrc, qrSrc } = this.state
+      if (!userHeadSrc || !qrSrc) {
+        timeOut = setTimeout(() => {
+          loop()
+        }, 100)
+        totalTimes += 100
+      } else {
+        _clear()
+        cb()
+      }
+    }
+
+    loop()
+  }
+
+  mngPoster(e) {
+    e && e.stopPropagation()
     this.setState({
       showPoster: true
     })
@@ -52,7 +83,9 @@ export default class Profile extends Component {
       goodsWidth: width,
       goodsHeight: height
     }, () => {
-      this.drawCanvas()
+      this.untilImgLoaded(
+        this.drawCanvasForShareGoods.bind(this)
+      )
     })
   }
 
@@ -65,44 +98,83 @@ export default class Profile extends Component {
     })
   }
 
-  getImages() {
-    return Promise.all([this.getGoodsSrc(), this.getUserHead()])
+  // 分享商品时需要加载的图片
+  getImagesForShareGoods() {
+    return Promise.all([this.getGoodsSrc(), this.getUserHead(), this.getQrCode()])
+  }
+
+  // 分享小程序本身时需要加载的图片
+  getImagesForShareMP() {
+    return Promise.all([this.getUserHead(), this.getQrCode()])
   }
 
   getGoodsSrc() {
-    return new Promise(async resolve => {
-      const data = await downLoadFile(
-        'https://ai-call-platform.oss-cn-hangzhou.aliyuncs.com/CompanyWebsite/OfficialWebsite/NewsPicture/news2@2x_1548753493146.jpg'
-      )
-      this.setState({
-        goodsSrc: data
-      }, () => {
-        resolve()
-      })
+    return new Promise(async (resolve, reject) => {
+      try {
+        const data = await downLoadFile(
+          'https://ai-call-platform.oss-cn-hangzhou.aliyuncs.com/CompanyWebsite/OfficialWebsite/NewsPicture/news2@2x_1548753493146.jpg'
+        )
+        this.setState({
+          goodsSrc: data
+        }, () => {
+          resolve()
+        })
+      } catch (e) {
+        Taro.showToast({
+          title: '加载商品图片失败，请重试~',
+          duration: 2000
+        })
+        reject()
+      }
     })
   }
 
   getUserHead() {
     const { user: { userInfo: { avatarUrl } } } = this.props
-    return new Promise(async resolve => {
-      let data = defaultAvatar
-      if (avatarUrl) {
-        data = await downLoadFile(avatarUrl)
+    return new Promise(async (resolve, reject) => {
+      try {
+        let data = defaultAvatar
+        if (avatarUrl) {
+          data = await downLoadFile(avatarUrl)
+        }
+        this.setState({
+          userHeadSrc: data
+        }, () => {
+          resolve()
+        })
+      } catch (e) {
+        Taro.showToast({
+          title: '加载用户头像失败，请重试~',
+          duration: 2000
+        })
+        reject()
       }
-      this.setState({
-        userHeadSrc: data
-      }, () => {
-        resolve()
-      })
     })
   }
 
   async getQrCode() {
-    const data = await downLoadFile(
-      'https://user-images.githubusercontent.com/5935390/43631321-765fdc46-9735-11e8-8312-798846c3f557.jpg'
-    )
-    this.setState({
-      qrSrc: data
+    return new Promise(async (resolve, reject) => {
+      if (this.state.qrSrc) {
+        resolve()
+        return
+      }
+
+      try {
+        const data = await downLoadFile(
+          'https://user-images.githubusercontent.com/5935390/43631321-765fdc46-9735-11e8-8312-798846c3f557.jpg'
+        )
+        this.setState({
+          qrSrc: data
+        }, () => {
+          resolve()
+        })
+      } catch (e) {
+        Taro.showToast({
+          title: '加载小程序码失败，请重试~',
+          duration: 2000
+        })
+        reject()
+      }
     })
   }
 
@@ -147,17 +219,18 @@ export default class Profile extends Component {
 
   componentDidMount() {
     this.getQrCode()
-    this.getUserHead()
+    // this.getUserHead()
   }
 
-  drawCanvas() {
+  // 分享商品时的绘制方法
+  drawCanvasForShareGoods() {
     const { qrSrc, goodsSrc, logoSrc, userHeadSrc, goodsWidth, goodsHeight, canvasScale } = this.state
+    const { user: { userInfo: { login, nickName } } } = this.props
 
     const ctx = Taro.createCanvasContext('myCanvas', this.$scope)
-    const query = Taro.createSelectorQuery().in(this.$scope)
+    // const query = Taro.createSelectorQuery().in(this.$scope)
 
-    query.select('#canvasContainer').boundingClientRect(rect => {
-      console.log(rect)
+    // query.select('#canvasContainer').boundingClientRect(rect => {
       const height = 510 // rect.height
       const cWidth = 325 // rect.width
       const left = 20
@@ -168,9 +241,6 @@ export default class Profile extends Component {
       const logoLeft = halfWidth - 25
 
       ctx.save()
-      console.log(canvasScale)
-      console.log(canvasScale[0])
-      console.log(canvasScale[1])
       ctx.scale(canvasScale[0], canvasScale[1])
 
       ctx.setFillStyle('#fff')
@@ -204,22 +274,24 @@ export default class Profile extends Component {
       ctx.setTextAlign('left')
       ctx.fillText('¥33.90', left + 10, priceTop) //price
 
-      // 个人头像
-      const headTop = titleTop + 15
-      if (userHeadSrc) {
-        ctx.save()
-        ctx.beginPath()
-        ctx.arc(halfWidth + 10, headTop + 10, 10, 0, 2*Math.PI)
-        ctx.clip()
-        ctx.drawImage(userHeadSrc, halfWidth, headTop, 20, 20)
-        ctx.restore()
-      }
+      if (login) {
+        // 个人头像
+        const headTop = titleTop + 15
+        if (userHeadSrc) {
+          ctx.save()
+          ctx.beginPath()
+          ctx.arc(halfWidth + 10, headTop + 10, 10, 0, 2*Math.PI)
+          ctx.clip()
+          ctx.drawImage(userHeadSrc, halfWidth, headTop, 20, 20)
+          ctx.restore()
+        }
 
-      const userTop = titleTop + 28
-      ctx.setFontSize(10)
-      ctx.setFillStyle('#666')
-      ctx.setTextAlign('left')
-      ctx.fillText('来自周杰的分享', halfWidth + 25, userTop) //
+        const userTop = titleTop + 28
+        ctx.setFontSize(10)
+        ctx.setFillStyle('#666')
+        ctx.setTextAlign('left')
+        ctx.fillText(`来自${nickName}的分享`, halfWidth + 25, userTop) //
+      }
 
       ctx.setStrokeStyle('#d6e4ef')
       ctx.strokeRect(left, goodsTop, width, width + 30 + 5 + 40)
@@ -236,6 +308,7 @@ export default class Profile extends Component {
 
       //  绘制二维码
       const qrTop = titleTop + 55
+      console.log('qrSrc:' + qrSrc)
       if (qrSrc) {
         ctx.drawImage(qrSrc, left, qrTop, 80, 80)
         ctx.setFontSize(12)
@@ -249,8 +322,68 @@ export default class Profile extends Component {
       // setTimeout(() => {
         ctx.draw()  // 这里有个需要注意就是，这个方法是在绘制完成之后在调用，不然容易其它被覆盖。
         Taro.hideLoading()
+        this.props.onPosterShown()
       // }, 2000)
-    }).exec()
+    // }).exec()
+  }
+
+  // 分享小程序本身时的绘制方法
+  drawCanvasForShareMP() {
+    const { qrSrc, userHeadSrc, canvasScale } = this.state
+
+    const ctx = Taro.createCanvasContext('myCanvas', this.$scope)
+
+    // const height = 490 // rect.height
+    const cWidth = 325 // rect.width
+    const left = 20
+    const halfWidth = cWidth / 2
+    const logoWidth = 30
+    const logoTop = 5
+    // const logoLeft = halfWidth - 25
+
+    ctx.save()
+    ctx.scale(canvasScale[0], canvasScale[1])
+
+    // // logo
+    // ctx.drawImage(logoSrc, logoLeft, logoTop, logoWidth, logoWidth)
+
+    // ctx.setFontSize(14)
+    // ctx.setFillStyle('#000')
+    // ctx.setTextAlign('left')
+    // ctx.fillText('蜜折', logoLeft + 35, 25) //
+
+    //  绘制二维码
+    const qrTop = logoWidth + logoTop * 2
+    if (qrSrc) {
+      ctx.drawImage(qrSrc, 0, qrTop, cWidth, cWidth)
+      ctx.setFontSize(12)
+      ctx.setFillStyle('#000')
+      ctx.setTextAlign('left')
+      ctx.fillText("长按图片识别二维码", left, qrTop + cWidth + 45)
+      ctx.fillText("查看蜜折小程序~", left, qrTop + cWidth + 63)
+    }
+
+    // 个人头像
+    const headTop = qrTop + cWidth + 28 + 7
+    if (userHeadSrc) {
+      ctx.save()
+      ctx.beginPath()
+      ctx.arc(halfWidth + 10, headTop + 10, 10, 0, 2*Math.PI)
+      ctx.clip()
+      ctx.drawImage(userHeadSrc, halfWidth, headTop, 20, 20)
+      ctx.restore()
+    }
+
+    const userTop = headTop + 9
+    ctx.setFontSize(10)
+    ctx.setFillStyle('#666')
+    ctx.setTextAlign('left')
+    ctx.fillText('来自周杰的分享', halfWidth + 25, userTop) //
+
+    ctx.restore()
+    ctx.draw()
+    Taro.hideLoading()
+    this.props.onPosterShown()
   }
 
   async sharePosteCanvas() {
@@ -259,7 +392,12 @@ export default class Profile extends Component {
       mask: true,
     })
 
-    await this.getImages()
+    if (this.props.forShareMP) {
+      await this.getImagesForShareMP()
+      this.drawCanvasForShareMP()
+    } else {
+      await this.getImagesForShareGoods()
+    }
   }
 
   //点击保存到相册
@@ -277,18 +415,12 @@ export default class Profile extends Component {
           Taro.saveImageToPhotosAlbum({
             filePath: res.tempFilePath,
             success() {
-              Taro.showModal({
-                content: '图片已保存到相册，赶紧晒一下吧~',
-                showCancel: false,
-                confirmText: '好的',
-                confirmColor: '#333',
-                success() {
-                  that.closeBox()
-                },
-                fail(err) {
-                  console.log(err)
-                }
+              Taro.showToast({
+                title: '保存成功~',
+                icon: '',
+                duration: 2000
               })
+              that.props.onSaved()
             },
             fail: function({ errMsg }) {
               Taro.showToast({
@@ -303,6 +435,7 @@ export default class Profile extends Component {
           Taro.hideLoading()
           Taro.showToast({
             title: '保存失败，请重试~',
+            icon: '',
             duration: 2000
           })
         }
@@ -312,18 +445,10 @@ export default class Profile extends Component {
 
   render () {
     const { showPoster, goodsSrc, canvasScale } = this.state
-    const { className } = this.props
+    const { className, forShareMP } = this.props
 
     return (
       <View className={'qrcode ' + className}>
-        {/* <View onClick={this.showPoster}>
-          {this.props.children}
-        </View> */}
-        {/* <Image
-          onClick={this.showPoster}
-          className='qrcode-img'
-          src={qrCode}
-        /> */}
 
         {showPoster && 
           <View class='qrcode-imgBox'>
@@ -331,20 +456,12 @@ export default class Profile extends Component {
               <Canvas
                 className='qrcode-imgBox-img'
                 canvasId='myCanvas'
-                style='height: 510px;width: 325px;'
+                style={`height: ${forShareMP ? 490 : 510}px;width: 325px;`}
                 id='canvasContainer'
               />
-              <Button className='qrcode-imgBox-close' onClick={this.closeBox.bind(this)}>
-                <AtIcon customStyle='margin-top: -4px' value='close' size='18' color='#666'></AtIcon>
-              </Button>
             </View>
-            <Button className='qrcode-imgBox-save' onClick={this.saveShareImg.bind(this)}>保存相册，分享到朋友圈</Button>
           </View>
         }
-
-        {/* {showPoster && 
-          <View className='qrcode-mask'></View>
-        } */}
 
         {goodsSrc &&
           <Image

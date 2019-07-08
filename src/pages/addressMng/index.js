@@ -2,6 +2,7 @@ import Taro from '@tarojs/taro'
 import { View, Text, ScrollView, Button } from '@tarojs/components'
 import { AtIcon, AtDrawer } from 'taro-ui'
 import { Loading } from '@components'
+import shareInfo from '@constants/shareInfo'
 import { observer, inject } from '@tarojs/mobx'
 import AddrList from './addrList'
 import AddAddr from './addAddr'
@@ -19,6 +20,10 @@ class Index extends Taro.PureComponent {
   state = {
     loaded: false,
     showAddAddr: false
+  }
+
+  onShareAppMessage() {
+    return shareInfo
   }
 
   componentWillMount () {

@@ -1,6 +1,7 @@
 import Taro from '@tarojs/taro'
 import { observer, inject } from '@tarojs/mobx'
 import { AtTabs, AtTabsPane } from 'taro-ui'
+import shareInfo from '@constants/shareInfo'
 import { ALL, PAYING, SHIPPING, SHIPED } from '@constants/orders'
 import List from './list'
 
@@ -18,6 +19,10 @@ class Index extends Taro.PureComponent {
     loaded: false,
     current: 0,
     tabList: [{ title: '全部' }, { title: '待付款' }, { title: '待发货' }, { title: '已发货' }]
+  }
+
+  onShareAppMessage() {
+    return shareInfo
   }
 
   componentWillMount () {

@@ -51,6 +51,7 @@ $box-shadow: rgba(255, 255, 255, .5);
       background-color: #fff;
       box-shadow: 0 0 36px $box-shadow;
       z-index: 1002;
+      border-radius: 10px;
       display: block !important;
     }
     &-close {

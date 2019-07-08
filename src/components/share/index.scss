@@ -13,14 +13,6 @@ $box-shadow: rgba(255, 255, 255, .5);
   height: 100%;
   top: 0;
   left: 0;
-  // top: 50%;
-  // right: 20px;
-  // margin-top: -60px;
-  // margin-left: 18px;
-  // width: 120px;
-  // height: 120px;
-  // border-radius: 50%;
-  // background: $color-round-shadow;
 
   &-img {
     width: 50px;
@@ -41,7 +33,7 @@ $box-shadow: rgba(255, 255, 255, .5);
       left: 0;
       right: 0;
       top: 0;
-      bottom: 180px;
+      bottom: 350px;
       width: 100%;
       height: auto;
       z-index: 1002;
@@ -56,6 +48,7 @@ $box-shadow: rgba(255, 255, 255, .5);
       background-color: #fff;
       box-shadow: 0 0 36px $box-shadow;
       z-index: 1002;
+      border-radius: 10px;
       display: block !important;
     }
     &-close {

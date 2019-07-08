@@ -29,6 +29,11 @@ button {
   border-radius: 4px;
 }
 
+.at-toast {
+  position: relative;
+  z-index: 9999;
+}
+
 .at-tag {
   color: #fff;
   padding: 0 6px;

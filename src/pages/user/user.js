@@ -2,6 +2,7 @@ import Taro from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
 import { TapBar } from '@components'
 import { WithLogin } from '@HOC'
+import shareInfo from '@constants/shareInfo'
 import { observer, inject } from '@tarojs/mobx'
 import Profile from './profile'
 import Opers from './opers'
@@ -17,6 +18,10 @@ class User extends Taro.PureComponent {
 
   constructor(props) {
     super(props)
+  }
+
+  onShareAppMessage() {
+    return shareInfo
   }
 
   render () {

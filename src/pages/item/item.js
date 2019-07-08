@@ -16,6 +16,15 @@ class Item extends Taro.PureComponent {
     navigationBarTitleText: '商品详情'
   }
 
+  onShareAppMessage(res) {
+    // todo: 根据当前所选项信息返回数据对象，其他页面分享的是整个小程序，这里分享的是具体商品
+    return {
+      title: '我的小程序嘻嘻个嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻。。。。。。。。。。。。。',
+      path: res.webViewUrl,
+      imageUrl: 'https://yanxuan.nosdn.127.net/b55964645fb27f77624a02043a14315b.png'
+    }
+  }
+
   constructor(props) {
     super(props)
     this.state = {
